@@ -7,11 +7,29 @@ Vue.component('click-counter', {
     }
 })
 
+let cat = 'cat'
+
+const rangeVar = [...Array(200).keys()]
+
+
+
 new Vue({
     el: '#app',
     data: {
-      message: 'Hello Vue!',
-      charmander: ''
+        message: 'Hello Vue!',
+        charmander: '',
+        
+    },
+    methods: {
+        
+        makeGrid() {
+            const grid = document.getElementById('grid')
+
+            for (let i = 0; i < 1000; i++){
+                grid.innerHTML += '<div class="squares"></div>'
+            
+            }
+        },
     },
     mounted() {
         fetch('https://pokeapi.co/api/v2/pokemon/charmander')
@@ -20,6 +38,7 @@ new Vue({
             this.charmander = data.sprites.front_default
             console.log('test')
         })
-    
+        this.makeGrid()
+
     }
   })
