@@ -18,7 +18,7 @@
 }
 
 #grid{
-  width: 100rem;
+  width: 50em;
   display: flex;
   flex-wrap: wrap;
 }
@@ -28,4 +28,11 @@
   width: 2rem;
   background: red;
   border: 1px solid white;
+}
+
+#player{
+  height: 2rem;
+  width: 2rem;
+  background-image:  url("images/redFront.png");
+  object-fit: scale-down;
 }

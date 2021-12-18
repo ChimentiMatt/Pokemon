@@ -9,7 +9,7 @@ Vue.component('click-counter', {
 
 let cat = 'cat'
 
-const rangeVar = [...Array(200).keys()]
+const rangeVar = [...Array(150).keys()]
 
 
 
@@ -24,9 +24,16 @@ new Vue({
         
         makeGrid() {
             const grid = document.getElementById('grid')
-
-            for (let i = 0; i < 1000; i++){
-                grid.innerHTML += '<div class="squares"></div>'
+            let counter = 0
+            for (let i = 0; i < 500; i++){
+                if (i == 260){
+                    grid.innerHTML += '<div id="player" class='+counter+'></div>'
+                    counter += 1
+                }
+                else{
+                    grid.innerHTML += '<div class="squares"'+counter+'></div>'
+                    counter += 1
+                }
             
             }
         },
@@ -40,5 +47,12 @@ new Vue({
         })
         this.makeGrid()
 
+        document.addEventListener("keydown", function (event) {
+            if (event.key == 'ArrowRight'){
+                // let playernum = document.getElementById('player')
+                
+                }
+            })
     }
+
   })
