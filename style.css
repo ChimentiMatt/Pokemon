@@ -33,7 +33,9 @@
 #player{
   height: 2rem;
   width: 2rem;
+
   background-image: url("images/redFront.png");
-  object-fit: scale-down;
+  background-size: contain;
+
 }
 

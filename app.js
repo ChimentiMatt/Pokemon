@@ -54,27 +54,15 @@ new Vue({
         document.addEventListener("keydown", function (event) {
             if (event.key == 'ArrowRight'){
                 this.player = document.getElementById('player')
-
                 this.playerId = this.player.className
- 
                 this.playerId = parseInt(this.playerId)
-                console.log(this.playerId, 'pID')
-                
+
                 squares[this.playerId].removeAttribute('id')
                 squares[this.playerId].classList.add('squares')
+                squares[this.playerId].style.backgroundImage = "none"
                 squares[this.playerId + 1].id = 'player'
                 squares[this.playerId + 1].classList.remove('squares')
-
-                // document.getElementById('player').classList.add('squares')
-                // document.getElementById('player').removeAttribute('id')
- 
-
-                // console.log(squares[newId])
-
-                // squares[newId].id = 'player'
-
-
-                   
+                squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png')"
                 }
             })
     }
