@@ -31,7 +31,7 @@ new Vue({
                     counter += 1
                 }
                 else{
-                    grid.innerHTML += '<div class="squares"'+counter+'></div>'
+                    grid.innerHTML += '<div class="squares '+counter+'"></div>'
                     counter += 1
                 }
             
@@ -54,14 +54,16 @@ new Vue({
             if (event.key == 'ArrowRight'){
                 this.player = document.getElementById('player')
                 let playerId = player.className
-                
+                console.log(playerId)
                 playerId = parseInt(playerId)
-                document.getElementById('player').removeAttribute('player')
+                document.getElementById('player').classList.add('squares')
+                document.getElementById('player').removeAttribute('id')
                 playerId += 1
                 console.log(squares[playerId])
-                squares[playerId].classList.add('player')
 
-                console.log(this.player.id, 'a')
+                squares[playerId].id = 'player'
+
+
                    
                 }
             })
