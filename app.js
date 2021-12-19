@@ -19,6 +19,7 @@ new Vue({
         message: 'Hello Vue!',
         charmander: '',
         player: '',
+        playerId: '',
     },
     methods: {
         
@@ -53,15 +54,24 @@ new Vue({
         document.addEventListener("keydown", function (event) {
             if (event.key == 'ArrowRight'){
                 this.player = document.getElementById('player')
-                let playerId = player.className
-                console.log(playerId)
-                playerId = parseInt(playerId)
-                document.getElementById('player').classList.add('squares')
-                document.getElementById('player').removeAttribute('id')
-                playerId += 1
-                console.log(squares[playerId])
 
-                squares[playerId].id = 'player'
+                this.playerId = this.player.className
+ 
+                this.playerId = parseInt(this.playerId)
+                console.log(this.playerId, 'pID')
+                
+                squares[this.playerId].removeAttribute('id')
+                squares[this.playerId].classList.add('squares')
+                squares[this.playerId + 1].id = 'player'
+                squares[this.playerId + 1].classList.remove('squares')
+
+                // document.getElementById('player').classList.add('squares')
+                // document.getElementById('player').removeAttribute('id')
+ 
+
+                // console.log(squares[newId])
+
+                // squares[newId].id = 'player'
 
 
                    
