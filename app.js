@@ -9,7 +9,7 @@ Vue.component('click-counter', {
 
 let cat = 'cat'
 
-const rangeVar = [...Array(150).keys()]
+// const rangeVar = [...Array(50).keys()]
 
 
 
@@ -26,8 +26,8 @@ new Vue({
         makeGrid() {
             const grid = document.getElementById('grid')
             let counter = 0
-            for (let i = 0; i < 500; i++){
-                if (i == 260){
+            for (let i = 0; i < 100; i++){
+                if (i == 50){
                     grid.innerHTML += '<div id="player" class='+counter+'></div>'
                     counter += 1
                 }
@@ -50,7 +50,7 @@ new Vue({
  
         let squares = Array.from(document.querySelectorAll('#grid div'))
 
-
+        // Player Moves Right
         document.addEventListener("keydown", function (event) {
             if (event.key == 'ArrowRight'){
                 this.player = document.getElementById('player')
@@ -63,6 +63,54 @@ new Vue({
                 squares[this.playerId + 1].id = 'player'
                 squares[this.playerId + 1].classList.remove('squares')
                 squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png')"
+                }
+            })
+        // Player Moves Left
+        document.addEventListener("keydown", function (event) {
+            if (event.key == 'ArrowLeft'){
+                this.player = document.getElementById('player')
+                this.playerId = this.player.className
+                this.playerId = parseInt(this.playerId)
+
+                squares[this.playerId].removeAttribute('id')
+                squares[this.playerId].classList.add('squares')
+                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId - 1].id = 'player'
+                squares[this.playerId - 1].classList.remove('squares')
+                squares[this.playerId - 1].style.backgroundImage = "url('images/redFront.png')"
+                }
+            })
+
+
+        // Player Moves Down
+        document.addEventListener("keydown", function (event) {
+            if (event.key == 'ArrowDown'){
+                this.player = document.getElementById('player')
+                this.playerId = this.player.className
+                this.playerId = parseInt(this.playerId)
+
+                squares[this.playerId].removeAttribute('id')
+                squares[this.playerId].classList.add('squares')
+                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId + 10].id = 'player'
+                squares[this.playerId + 10].classList.remove('squares')
+                squares[this.playerId + 10].style.backgroundImage = "url('images/redFront.png')"
+                }
+            })
+
+        // Player Moves Up
+        document.addEventListener("keydown", function (event) {
+            if (event.key == 'ArrowUp'){
+                this.player = document.getElementById('player')
+                this.playerId = this.player.className
+                this.playerId = parseInt(this.playerId)
+
+                squares[this.playerId].removeAttribute('id')
+                squares[this.playerId].classList.add('squares')
+                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId - 10].id = 'player'
+                squares[this.playerId - 10].classList.remove('squares')
+                squares[this.playerId - 10].style.backgroundImage = "url('images/redFront.png')"
                 }
             })
     }
