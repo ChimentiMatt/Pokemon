@@ -18,7 +18,7 @@ new Vue({
     data: {
         message: 'Hello Vue!',
         charmander: '',
-        
+        player: '',
     },
     methods: {
         
@@ -46,11 +46,23 @@ new Vue({
             console.log('test')
         })
         this.makeGrid()
+ 
+        let squares = Array.from(document.querySelectorAll('#grid div'))
+
 
         document.addEventListener("keydown", function (event) {
             if (event.key == 'ArrowRight'){
-                // let playernum = document.getElementById('player')
+                this.player = document.getElementById('player')
+                let playerId = player.className
                 
+                playerId = parseInt(playerId)
+                document.getElementById('player').removeAttribute('player')
+                playerId += 1
+                console.log(squares[playerId])
+                squares[playerId].classList.add('player')
+
+                console.log(this.player.id, 'a')
+                   
                 }
             })
     }
