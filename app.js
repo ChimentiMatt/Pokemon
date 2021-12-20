@@ -30,6 +30,16 @@ const App = {
             
             }
         },
+        testFunc() {
+            this.playerId = this.player.className
+            this.playerId = parseInt(this.playerId)
+            squares[this.playerId].removeAttribute('id')
+            squares[this.playerId].classList.add('squares')
+            squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
+            squares[this.playerId + 1].id = 'player'
+            squares[this.playerId + 1].classList.remove('squares')
+            squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png'), url('images/grass.png')"
+        }
 
 
 
@@ -43,6 +53,8 @@ const App = {
             console.log('test')
         })
         this.makeGrid()
+        
+
  
         let squares = Array.from(document.querySelectorAll('#grid div'))
 
@@ -56,14 +68,7 @@ const App = {
 
                 }
                 else{
-                    this.playerId = this.player.className
-                    this.playerId = parseInt(this.playerId)
-                    squares[this.playerId].removeAttribute('id')
-                    squares[this.playerId].classList.add('squares')
-                    squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
-                    squares[this.playerId + 1].id = 'player'
-                    squares[this.playerId + 1].classList.remove('squares')
-                    squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png'), url('images/grass.png')"
+                    this.testFunc()
                     }
                 }
             })

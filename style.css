@@ -18,9 +18,23 @@
 }
 
 #grid{
+  margin-top: 10rem;
   width: 20em;
   display: flex;
   flex-wrap: wrap;
+}
+
+#introScreen{
+  position: absolute;
+  width: 20em;
+  background: red;
+  height: 20rem;
+}
+
+#titleText{
+  width: 18rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .squares{
@@ -28,6 +42,7 @@
   width: 2rem;
   background: url("images/grass.png");
   background-size: contain;
+
 }
 
 #player{
