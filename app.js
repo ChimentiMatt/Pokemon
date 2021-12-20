@@ -1,25 +1,17 @@
-Vue.component('click-counter', {
-    template: '<button @click="count++">{{count}}</button>',
-    data() {
-        return {
-            count: 0
-        }
-    }
-})
+
 
 let cat = 'cat'
 
-// const rangeVar = [...Array(50).keys()]
 
 
-
-new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!',
-        charmander: '',
-        player: '',
-        playerId: '',
+const App = {
+    data() {
+        return{ 
+            message: 'Hello Vue!',
+            charmander: '',
+            player: '',
+            playerId: '',
+            }
     },
     methods: {
         
@@ -38,6 +30,10 @@ new Vue({
             
             }
         },
+
+
+
+
     },
     mounted() {
         fetch('https://pokeapi.co/api/v2/pokemon/charmander')
@@ -141,4 +137,5 @@ new Vue({
             })
     }
 
-  })
+  }
+  Vue.createApp(App).mount('#app')
