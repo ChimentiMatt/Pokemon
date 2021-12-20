@@ -26,15 +26,16 @@
 .squares{
   height: 2rem;
   width: 2rem;
-  background: red;
-  border: 1px solid white;
+  background: url("images/grass.png");
+  background-size: contain;
 }
 
 #player{
   height: 2rem;
   width: 2rem;
-
-  background-image: url("images/redFront.png");
+  background-image: 
+  url("images/redFront.png"),
+  url("images/grass.png");
   background-size: contain;
 
 }

@@ -56,13 +56,12 @@ new Vue({
                 this.player = document.getElementById('player')
                 this.playerId = this.player.className
                 this.playerId = parseInt(this.playerId)
-
                 squares[this.playerId].removeAttribute('id')
                 squares[this.playerId].classList.add('squares')
-                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
                 squares[this.playerId + 1].id = 'player'
                 squares[this.playerId + 1].classList.remove('squares')
-                squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png')"
+                squares[this.playerId + 1].style.backgroundImage = "url('images/redRight.png'), url('images/grass.png')"
                 }
             })
         // Player Moves Left
@@ -71,13 +70,12 @@ new Vue({
                 this.player = document.getElementById('player')
                 this.playerId = this.player.className
                 this.playerId = parseInt(this.playerId)
-
                 squares[this.playerId].removeAttribute('id')
                 squares[this.playerId].classList.add('squares')
-                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
                 squares[this.playerId - 1].id = 'player'
                 squares[this.playerId - 1].classList.remove('squares')
-                squares[this.playerId - 1].style.backgroundImage = "url('images/redFront.png')"
+                squares[this.playerId - 1].style.backgroundImage = "url('images/redLeft.png'), url('images/grass.png')"
                 }
             })
 
@@ -88,13 +86,12 @@ new Vue({
                 this.player = document.getElementById('player')
                 this.playerId = this.player.className
                 this.playerId = parseInt(this.playerId)
-
                 squares[this.playerId].removeAttribute('id')
                 squares[this.playerId].classList.add('squares')
-                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
                 squares[this.playerId + 10].id = 'player'
                 squares[this.playerId + 10].classList.remove('squares')
-                squares[this.playerId + 10].style.backgroundImage = "url('images/redFront.png')"
+                squares[this.playerId + 10].style.backgroundImage = "url('images/redFront.png'), url('images/grass.png')"
                 }
             })
 
@@ -104,13 +101,12 @@ new Vue({
                 this.player = document.getElementById('player')
                 this.playerId = this.player.className
                 this.playerId = parseInt(this.playerId)
-
                 squares[this.playerId].removeAttribute('id')
                 squares[this.playerId].classList.add('squares')
-                squares[this.playerId].style.backgroundImage = "none"
+                squares[this.playerId].style.backgroundImage = "url('images/grass.png')"
                 squares[this.playerId - 10].id = 'player'
                 squares[this.playerId - 10].classList.remove('squares')
-                squares[this.playerId - 10].style.backgroundImage = "url('images/redFront.png')"
+                squares[this.playerId - 10].style.backgroundImage = "url('images/redBack.png'), url('images/grass.png')"
                 }
             })
     }
