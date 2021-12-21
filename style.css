@@ -38,7 +38,6 @@
   width: 20em;
   background: red;
   height: 20rem;
-
 }
 
 #introChar{
@@ -50,8 +49,14 @@
 
 #titleText{
   width: 18rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: .5rem;
+}
+
+#titleVersion{
+  /* color: red; */
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: white;
 }
 
 #introImg{
@@ -60,6 +65,8 @@
 
 #pressEnter{
   margin-top: 1rem;
+  color: silver;
+  font-weight: bold;
 }
 
 .squares{
@@ -77,6 +84,5 @@
   url("images/redFront.png"),
   url("images/grass.png");
   background-size: contain;
-
 }
 
