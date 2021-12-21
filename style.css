@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
   }
   
 #app{
@@ -18,6 +21,7 @@
 }
 
 #grid{
+  position: absolute;
   margin-top: 10rem;
   width: 20em;
   display: flex;
@@ -26,14 +30,35 @@
 
 #introScreen{
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10rem;
+  text-align: center;
   width: 20em;
   background: red;
   height: 20rem;
+
+}
+
+#introChar{
+  position: relative;
+  top: -2rem;
+  height: 10rem;
+  width: 10rem;
 }
 
 #titleText{
   width: 18rem;
-  margin-left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#introImg{
+  height: 5rem;
+}
+
+#pressEnter{
   margin-top: 1rem;
 }
 
