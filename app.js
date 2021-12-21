@@ -15,10 +15,9 @@ for (let i = 0; i < 100; i++){
         counter += 1
     }
 }
-
-function randomEncounter() {
-    console.log('battle')
-}
+var tl = gsap.timeline({ repeat: -1})
+tl.to('#pressEnter', {duration: 1, color: 'white'})
+tl.to('#pressEnter', {duration: 1, color: 'silver'})
 
 
 document.addEventListener("keydown", function (event) {
@@ -39,7 +38,15 @@ document.addEventListener("keydown", function (event) {
         battleCounter += 1
         console.log(battleCounter)
         if (battleCounter == battleTrigger) {
-            alert('battle')
+            
+            document.getElementById('battleScreen').style.display = 'flex'
+
+
+
+
+
+
+
             battleCounter = -1
             battleTrigger = Math.floor(Math.random() * 5)
         }
