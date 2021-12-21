@@ -26,8 +26,10 @@
   width: 20em;
   display: flex;
   flex-wrap: wrap;
+
 }
 
+/* Intro Screen ------------------------------------------------------------------------------------------------ */
 #introScreen{
   position: absolute;
   display: flex;
@@ -38,6 +40,8 @@
   width: 20em;
   background: red;
   height: 20rem;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 #introChar{
@@ -79,10 +83,65 @@
   margin-top: 15rem;
   text-align: center;
   width: 20em;
-  background: red;
+  background: white;
   height: 20rem;
   display: none;
+  border-radius: 5px;
+  border: 1px solid black;
 }
+
+#charBack{
+  height: 7.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#battleUI{
+  height: 5rem;
+  position: absolute;
+  bottom: .5rem;
+  width: 95%;
+  border-radius: 5px;
+  border: 1px dotted black;
+  background: white;
+  display: flex;
+}
+
+#battleUILeft{
+  text-align: left;
+  padding-top: 1rem;
+}
+
+#battleUIRight{
+  width: 13rem;
+  height: 5rem;
+  border: 1px solid black;
+  padding-left: 1rem;
+
+}
+
+#battleUIRightTop{
+  display: flex;
+  justify-content: space-between;
+  height: 2.5rem;
+}
+#battleUIRightBottom{
+  display: flex;
+  justify-content: space-between;
+  height: 2.5rem;
+}
+#battleUIRight button{
+  border: none;
+  background: none;
+  text-align: start;
+}
+
+.buttonRight{
+  width: 2.5rem;
+}
+
+
+
 
 
 
