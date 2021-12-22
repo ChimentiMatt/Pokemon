@@ -88,13 +88,49 @@
   display: none;
   border-radius: 5px;
   border: 1px solid black;
+  overflow: hidden;
+}
+
+#charBar{
+  position: absolute;
+  height: 4rem;
+  width: 10rem;
+  border: 1px dotted black;
+  bottom: 5rem;
+  right: .5rem;
+  border-radius: 5px;
+}
+
+#charBarTop{
+  display: flex;
+}
+#charBarTop p{
+  padding-left: .5rem;
+}
+#hpBar{
+  width: 70%;
+  margin-left: 30%;
+  height: .7rem;
+  background: burlywood;
+  border-radius: 10px;
+
+}
+
+#hpValue{
+  margin-top: .1rem;
+  margin-left:6rem;
+}
+
+#charBarBottom{
+  display: flex;
+  flex-direction: column;
 }
 
 #charBack{
-  height: 7.5rem;
+  height: 10rem;
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 3rem;
+  right: -5rem;
 }
 #battleUI{
   height: 5rem;
@@ -110,20 +146,24 @@
 #battleUILeft{
   text-align: left;
   padding-top: 1rem;
+  width: 80%;
+  padding-left: 1rem;
 }
 
 #battleUIRight{
   width: 13rem;
   height: 5rem;
-  border: 1px solid black;
+  border: 1px dotted black;
   padding-left: 1rem;
-
+  border-radius: 5px;
+  display: none;
 }
 
 #battleUIRightTop{
   display: flex;
   justify-content: space-between;
   height: 2.5rem;
+  margin-top: .5rem;
 }
 #battleUIRightBottom{
   display: flex;
@@ -134,16 +174,31 @@
   border: none;
   background: none;
   text-align: start;
+  display: flex;
 }
 
 .buttonRight{
   width: 2.5rem;
 }
 
+#fightArrow{
+  margin-top: .2rem;
+}
 
+#bagArrow{
+  display: none;
+  margin-top: .2rem;
+}
 
+#pokeArrow{
+  display: none;
+  margin-top: .2rem; 
+}
 
-
+#runArrow{
+  display: none;
+  margin-top: .2rem;
+}
 
 
 .squares{
