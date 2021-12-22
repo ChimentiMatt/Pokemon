@@ -170,6 +170,11 @@ var tl = gsap.timeline({ repeat: -1})
 tl.to('#pressEnter', {duration: 1, color: 'white'})
 tl.to('#pressEnter', {duration: 1, color: 'silver'})
 
+let battleText = document.getElementById('battleUILeft')
+let currentName = ''
+
+let playerDamage = 100
+let newPokeDamage = 100
 
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
@@ -178,12 +183,34 @@ document.addEventListener("keydown", function (event) {
         }
         else if (inBattle){
             if (fight){
-
+                playerDamage -= 10
+                newPokeDamage -= 30
+                battleText.innerHTML = "Charmander uses Scratch"
+                gsap.to('#charBack', {y: '-1rem', duration: .2})
+                gsap.to('#charBack', {delay: .2, y: '0rem', duration: .2})
+                gsap.to('#newPokemonFront', {delay: .3, duration: .2, rotation: 5})
+                gsap.to('#newPokemonFront', {delay: .5, duration: .2, rotation: 0})
+                setTimeout(() => {battleText.innerHTML = `It's super effective!`}, 1200)
+                gsap.to('#newHpBarInner', {delay: 1, width: newPokeDamage+'%'})
+                setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
+                gsap.to('#charBack', {delay: 2.5, duration: .2, rotation: 5})
+                gsap.to('#charBack', {delay: 2.7, duration: .2, rotation: 0})
+                setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 3400)
+                gsap.to('#hpBarInner', {delay: 3.3, width: playerDamage+'%'})
             }
             else if (run){
                 inBattle = false
                 document.getElementById('battleScreen').style.display = 'none'
                 battleCounter = 0
+            }
+            else if (bag){
+                let catchAttempt = Math.floor(Math.random() * 100)
+                if (catchAttempt > newPokeDamage){
+                    alert('caught')
+                }
+                else{
+                    alert('fail')
+                }
             }
         }
     }
@@ -202,6 +229,7 @@ let run = false
 // Player Moves Right
 document.addEventListener("keydown", function (event) {
 
+
     function encounter() {
         if (inBattle){
 
@@ -215,7 +243,7 @@ document.addEventListener("keydown", function (event) {
             
             inBattle = true
             document.getElementById('battleScreen').style.display = 'flex'
-            let battleText = document.getElementById('battleUILeft')
+
             gsap.to('#battleUIRight', {delay: 1.5, display: 'block'})
             gsap.to('#charBack', {x: '-15rem'})
             setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
@@ -227,9 +255,10 @@ document.addEventListener("keydown", function (event) {
     function battle() {
         let randomPokemon = Math.floor(Math.random() * 149)
         let newPokemon = pokemonList[randomPokemon]
+        currentName = newPokemon
         document.getElementById('newPokemonName').innerHTML = newPokemon + '&nbspLv5'
         let newPokemonLowercase = newPokemon.toLowerCase()
-
+        gsap.to('#newPokemonFront', {opacity: 0, duration: 0})
         fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
         .then(response => response.json())
         .then(data => {
@@ -237,6 +266,7 @@ document.addEventListener("keydown", function (event) {
             let sprite = data.sprites.front_default
             console.log(data)
             newPokemonLowercase.src=sprite
+            gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
         })
     }
 

@@ -30,7 +30,7 @@
                     <div id="battleUIRight">
                         <div id="battleUIRightTop">
                             <button><i id="fightArrow" class="fas fa-caret-right"></i>FIGHT</button>
-                            <button class="buttonRight"><i id="bagArrow" class="fas fa-caret-right"></i>BAG</button>
+                            <button class="buttonRight" id="bagBtn"><i id="bagArrow" class="fas fa-caret-right"></i>Catch</button>
                         </div>
                         <div id="battleUIRightBottom">
                             <button><i id="pokeArrow" class="fas fa-caret-right"></i>POKEMON</button>
@@ -43,18 +43,22 @@
                             <p>Lv9</p>
                         </div>
                         <div id="charBarBottom">
-                            <p id="hpBar"></p>
+                            <div id="hpBar"><div id="hpBarInner"></div></div>
                             <p id="hpValue">20/20</p>
                         </div>
                     </div>
                 </div>
+
                 <div id="newPokemonContainer">
                     <img id="newPokemonFront" src=""/>
                     <div id="newPokemonInfo">
                         <p id="newPokemonName"></p>
-
+                        <div id="newHpBar"><div id="newHpBarInner"></div>
+                        <p id="newHpValue">20/20</p>
+                 
                     </div>
                 </div>
+
             </div>
         </div>
 
