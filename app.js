@@ -173,7 +173,19 @@ tl.to('#pressEnter', {duration: 1, color: 'silver'})
 
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
-        document.getElementById('introScreen').style.display = 'none'
+        if (!inBattle){
+            document.getElementById('introScreen').style.display = 'none'
+        }
+        else if (inBattle){
+            if (fight){
+
+            }
+            else if (run){
+                inBattle = false
+                document.getElementById('battleScreen').style.display = 'none'
+                battleCounter = 0
+            }
+        }
     }
 })
 
@@ -191,9 +203,15 @@ let run = false
 document.addEventListener("keydown", function (event) {
 
     function encounter() {
-        battleCounter += 1
-        console.log(battleCounter)
-        if (battleCounter == battleTrigger) {
+        if (inBattle){
+
+        }
+        else if (inBattle == false && battleCounter != battleTrigger){
+            battleCounter += 1
+            console.log(battleCounter, 'battle counter')
+            console.log(battleTrigger)
+        }
+        else if (battleCounter == battleTrigger && inBattle == false ) {
             
             inBattle = true
             document.getElementById('battleScreen').style.display = 'flex'
@@ -202,20 +220,23 @@ document.addEventListener("keydown", function (event) {
             gsap.to('#charBack', {x: '-15rem'})
             setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
             battleCounter = -1
-            battleTrigger = Math.floor(Math.random() * 5)
+            battleTrigger = Math.floor(Math.random() * 10)
             battle()
         }
     }
     function battle() {
-        let newPokemon = pokemonList[5].toLowerCase()
-        console.log(newPokemon, 'npm')
-        fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
+        let randomPokemon = Math.floor(Math.random() * 149)
+        let newPokemon = pokemonList[randomPokemon]
+        document.getElementById('newPokemonName').innerHTML = newPokemon + '&nbspLv5'
+        let newPokemonLowercase = newPokemon.toLowerCase()
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
         .then(response => response.json())
         .then(data => {
-            let newPokemon = document.getElementById('newPokemonFront')
+            let newPokemonLowercase = document.getElementById('newPokemonFront')
             let sprite = data.sprites.front_default
             console.log(data)
-            newPokemon.src=sprite
+            newPokemonLowercase.src=sprite
         })
     }
 
@@ -362,6 +383,7 @@ document.addEventListener("keydown", function (event) {
             encounter()
             }
         }
+
     })
 
 

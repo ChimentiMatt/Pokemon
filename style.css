@@ -97,7 +97,7 @@
   width: 10rem;
   border: 1px dotted black;
   bottom: 5rem;
-  right: .5rem;
+  right: 0rem;
   border-radius: 5px;
 }
 
@@ -208,6 +208,20 @@
   height: 8rem;
 }
 
+#newPokemonInfo{
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  height: 4rem;
+  width: 10rem;
+  border: 1px dotted black;
+  border-radius: 5px;
+}
+
+#newPokemonName{
+  position: absolute;
+  padding-left: .5rem;
+}
 
 .squares{
   height: 2rem;
