@@ -5,6 +5,157 @@ let counter = 0
 let player = ''
 let playerId = ''
 
+const pokemonList = [
+'Bulbasaur',
+'Ivysaur',
+'Venusaur',
+'Charmander',
+'Charmeleon',
+'Charizard',
+'Squirtle',
+'Wartortle',
+'Blastoise',
+'Caterpie',
+'Metapod',
+'Butterfree',
+'Weedle',
+'Kakuna',
+'Beedrill',
+'Pidgey',
+'Pidgeotto',
+'Pidgeot',
+'Rattata',
+'Raticate',
+'Spearow',
+'Fearow',
+'Ekans',
+'Arbok',
+'Pikachu',
+'Raichu',
+'Sandshrew',
+'Sandslash',
+'Nidoran (Female)',
+'Nidorina',
+'Nidoqueen',
+'Nidoran (Male)',
+'Nidorino',
+'Nidoking',
+'Clefairy',
+'Clefable',
+'Vulpix',
+'Ninetales',
+'Jigglypuff',
+'Wigglytuff',
+'Zubat',
+'Golbat',
+'Oddish',
+'Gloom',
+'Vileplume',
+'Paras',
+'Parasect',
+'Venonat',
+'Venomoth',
+'Diglett',
+'Dugtrio',
+'Meowth',
+'Persian',
+'Psyduck',
+'Golduck',
+'Mankey',
+'Primeape',
+'Growlithe',
+'Arcanine',
+'Poliwag',
+'Poliwhirl',
+'Poliwrath',
+'Abra',
+'Kadabra',
+'Alakazam',
+'Machop',
+'Machoke',
+'Machamp',
+'Bellsprout',
+'Weepinbell',
+'Victreebell',
+'Tentacool',
+'Tentacruel',
+'Geodude',
+'Graveler',
+'Golem',
+'Ponyta',
+'Rapidash',
+'Slowpoke',
+'Slowbro',
+'Magnemite',
+'Magneton',
+'Farfetchd',
+'Doduo',
+'Dodrio',
+'Seel',
+'Dewgong',
+'Grimer',
+'Muk',
+'Shelder',
+'Cloyster',
+'Gastly',
+'Haunter',
+'Gengar',
+'Onix',
+'Drowzee',
+'Hypno',
+'Krabby',
+'Kingler',
+'Voltorb',
+'Electrode',
+'Exeggcute',
+'Exeggutor',
+'Cubone',
+'Marowak',
+'Hitmonlee',
+'Hitmonchan',
+'Lickitung',
+'Koffing',
+'Weezing',
+'Rhyhorn',
+'Rhydon',
+'Chansey',
+'Tangela',
+'Kangaskhan',
+'Horsea',
+'Seadra',
+'Goldeen',
+'Seaking',
+'Staryu',
+'Starmie',
+'Mr. Mime',
+'Jynx',
+'Electabuzz',
+'Magmar',
+'Pinsir',
+'Tauros',
+'Magikarp',
+'Gyrados',
+'Lapras',
+'Ditto',
+'Eevee',
+'Vaporeon',
+'Jolteon',
+'Flareon',
+'Porygon',
+'Omanyte',
+'Omastar',
+'Kabuto',
+'Kabutops',
+'Aerodactyl',
+'Snorlax',
+'Articuno',
+'Zapdos',
+'Moltres',
+'Dratini',
+'Dragonair',
+'Dragonite',
+'Mewtwo',
+]
 for (let i = 0; i < 100; i++){
     if (i == 50){
         grid.innerHTML += '<div id="player" class='+counter+'></div>'
@@ -52,9 +203,21 @@ document.addEventListener("keydown", function (event) {
             setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
             battleCounter = -1
             battleTrigger = Math.floor(Math.random() * 5)
+            battle()
         }
     }
-
+    function battle() {
+        let newPokemon = pokemonList[5].toLowerCase()
+        console.log(newPokemon, 'npm')
+        fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemon}`)
+        .then(response => response.json())
+        .then(data => {
+            let newPokemon = document.getElementById('newPokemonFront')
+            let sprite = data.sprites.front_default
+            console.log(data)
+            newPokemon.src=sprite
+        })
+    }
 
     if (event.key == 'ArrowRight'){
         player = document.getElementById('player')
@@ -200,3 +363,6 @@ document.addEventListener("keydown", function (event) {
             }
         }
     })
+
+
+    

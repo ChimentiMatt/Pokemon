@@ -201,6 +201,14 @@
 }
 
 
+#newPokemonFront{
+  position: absolute;
+  top: -1rem;
+  left: 1rem;
+  height: 8rem;
+}
+
+
 .squares{
   height: 2rem;
   width: 2rem;
