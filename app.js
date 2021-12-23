@@ -28,10 +28,10 @@ const pokemonList = [
 'Raichu',
 'Sandshrew',
 'Sandslash',
-'Nidoran (Female)',
+'29',
 'Nidorina',
 'Nidoqueen',
-'Nidoran (Male)',
+'32',
 'Nidorino',
 'Nidoking',
 'Clefairy',
@@ -121,7 +121,8 @@ const pokemonList = [
 'Seaking',
 'Staryu',
 'Starmie',
-'Mr. Mime',
+'122',
+'Scyther',
 'Jynx',
 'Electabuzz',
 'Magmar',
@@ -151,6 +152,10 @@ const pokemonList = [
 'Mewtwo',
 ]
 
+// const pokemonList = [
+//     '32'
+// ]
+const caughtList = ['Charmander']
 
 // title screen animations
 var tl = gsap.timeline({ repeat: -1})
@@ -165,6 +170,7 @@ let playerId = ''
 let playerDamage = 100
 let newPokeDamage = 100
 let disableEnter = false
+let pokedexScreen = false
 
 // make grass field 
 const grid = document.getElementById('grid')
@@ -181,6 +187,7 @@ for (let i = 0; i < 100; i++){
 
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
+
         if (!inBattle){
             document.getElementById('introScreen').style.display = 'none'
         }
@@ -188,8 +195,7 @@ document.addEventListener("keydown", function (event) {
             disableEnter = true
             if (fight){
                 playerDamage -= 10
-                newPokeDamage -= 30
-
+                newPokeDamage -= Math.floor(Math.random() * (10 + 30)+  10) 
 
                 battleText.innerHTML = "Charmander uses Scratch"
                 gsap.to('#charBack', {y: '-1rem', duration: .2})
@@ -252,7 +258,7 @@ document.addEventListener("keydown", function (event) {
                     gsap.to('#battleScreen', {delay: 4, display: 'none'})
                     setTimeout(() => gsap.to('#charBack', {x: '15rem', duration: 0}), 5000 )
                     battleCounter = 0
-                    
+                    caughtList.push(currentName)
 
                     setTimeout(() => {disableEnter = false}, 4000)
                 }
@@ -285,10 +291,79 @@ document.addEventListener("keydown", function (event) {
                     setTimeout(() => {disableEnter = false}, 5500)
                 }
             }
+            else if (pokemon){
+                let pokdedexDom = document.getElementById('pokedex')
+                if (pokedexScreen){
+                    pokdedexDom.style.display = 'none'
+                    disableEnter = false
+                    pokedexScreen = false
+                }
+                else{
+                    pokedexScreen = true
+                    disableEnter = false
+                    pokdedexDom.style.display = 'block'
+                    let newElement = ''
+                    console.log(pokemonList)
+                    console.log(caughtList)
+                    for (let i = 0; i < pokemonList.length; i++){
+                        // if Nidoran
+                        if (i == 29 -1){
+                            // if caught
+                            if (caughtList.includes('Nidoran m') ){
+                                newElement += `<p class="pokedexItems">${i + 1} Nidoran m <img class="caughtBall" src='images/pokeball.png'/></p>` 
+                            }
+                            // if not caught
+                            else{
+                                newElement += `<p class="pokedexItems">${i + 1} Nidoran</p>` 
+                            }
+
+                        }
+                        // if Nidoqueen
+                        else if (i == 32 -1){
+                            // if caught
+                            if (caughtList.includes('Nidoran f') ){
+                                // alert('caught')
+                                newElement += `<p class="pokedexItems">${i + 1} Nidoran f <img class="caughtBall" src='images/pokeball.png'/></p>` 
+                            }
+                            // if not caught
+                            else{
+                                newElement += `<p class="pokedexItems">${i + 1}  Nidoqueen</p>`
+                            }
+                        }
+                        // If Mr. Mime
+                        else if (i == 122 -1){
+                            // if caught
+                            if (caughtList.includes('Mr. Mime') ){
+                                newElement += `<p class="pokedexItems">${i + 1} Mr. Mime <img class="caughtBall" src='images/pokeball.png'/></p>` 
+                            }
+                            // if not caught
+                            else{
+                                newElement += `<p class="pokedexItems">${i + 1}  Mr. Mime</p>`
+                            }
+                        }
+                        else{
+                            // if caught
+                            if (caughtList.includes(pokemonList[i]) ){
+                                // console.log(pokemonList[i],'i pokemon')
+                                newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]} <img class="caughtBall" src='images/pokeball.png'/></p>`
+                            }
+                            // if not caught
+                            else{
+                                newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
+                            }
+                        }
+                    }
+                    pokdedexDom.innerHTML = newElement
+                    //Srroll through pokedex screen
+                    gsap.to('.pokedexItems', {delay: 1, duration: 40, y: '-225rem', ease: 'none'})
+                    gsap.to('.pokedexItems', {delay: 42, duration: 40, y: '0rem', ease: 'none'})
+                }
+            }
         }
     }
 })
 
+//make square on grid
 let squares = Array.from(document.querySelectorAll('#grid div'))
 
 let battleCounter = 0
@@ -305,7 +380,6 @@ document.addEventListener("keydown", function (event) {
 
     function encounter() {
         if (inBattle){
-
         }
         else if (inBattle == false && battleCounter != battleTrigger){
 
@@ -320,6 +394,7 @@ document.addEventListener("keydown", function (event) {
             gsap.to('#hpBarInner', {delay: 0, duration: 0, width: playerDamage+'%'})
         }
         else if (battleCounter == battleTrigger && inBattle == false ) {
+            battle()
             
             inBattle = true
             document.getElementById('battleScreen').style.display = 'flex'
@@ -329,15 +404,25 @@ document.addEventListener("keydown", function (event) {
             setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
             battleCounter = -1
             battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
-            battle()
         }
     }
     function battle() {
 
-        let randomPokemon = Math.floor(Math.random() * 149)
+        let randomPokemon = Math.floor(Math.random() * pokemonList.length)
         let newPokemon = pokemonList[randomPokemon]
         currentName = newPokemon
-        document.getElementById('newPokemonName').innerHTML = newPokemon + '&nbspLv5'
+        if (currentName == '122'){
+            currentName = 'Mr. Mime'
+        }
+        else if (currentName == '29'){
+            currentName = 'Nidoran m'
+        }
+        else if (currentName =='32'){
+            currentName = 'Nidoran f' 
+
+        }
+
+        document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'
         let newPokemonLowercase = newPokemon.toLowerCase()
         gsap.to('#newPokemonFront', {opacity: 0, duration: 0})
         fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
@@ -345,7 +430,7 @@ document.addEventListener("keydown", function (event) {
         .then(data => {
             let newPokemonLowercase = document.getElementById('newPokemonFront')
             let sprite = data.sprites.front_default
-            console.log(data)
+            // console.log(data)
             newPokemonLowercase.src=sprite
             gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
             
@@ -407,7 +492,7 @@ document.addEventListener("keydown", function (event) {
             }
         }
         else{ 
-        // Stop player from moving outside boundary
+            // Stop player from moving outside boundary
             if (player.classList[0] % 10 == 0){
             }
 

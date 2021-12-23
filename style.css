@@ -290,3 +290,24 @@
   display: none;
   transform: rotate(35deg);
 }
+
+#pokedex{
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background: rgb(248, 248, 248);
+  color: red;
+  text-align: start;
+  padding-left: 7rem;
+  display: none;
+}
+
+.pokedexItems:nth-child(1){
+  padding-top: 10rem;
+}
+
+.caughtBall{
+  height: 1rem;
+  width: 1rem;
+}
