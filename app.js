@@ -206,10 +206,31 @@ document.addEventListener("keydown", function (event) {
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
                 if (catchAttempt > newPokeDamage){
-                    alert('caught')
+                    document.getElementById('pokeball').style.display = 'block'
+                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2})
+                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
+                    gsap.to('#pokeball', {delay: 1.5, rotation: 0})
+                    gsap.to('#pokeball', {delay: 1.7, rotation: 25})
+                    gsap.to('#pokeball', {delay: 2.3, rotation: 0})
+                    gsap.to('#pokeball', {delay: 2.5, rotation: 25})
                 }
                 else{
-                    alert('fail')
+                    //reset pokeball if already used
+                    gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
+                    document.getElementById('pokeball').src = 'images/pokeball.png'
+
+                    document.getElementById('pokeball').style.display = 'block'
+                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2})
+                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
+                    gsap.to('#pokeball', {delay: 1.5, rotation: 0})
+                    gsap.to('#pokeball', {delay: 1.7, rotation: 25})
+                    gsap.to('#pokeball', {delay: 2.3, rotation: 0})
+                    gsap.to('#pokeball', {delay: 2.5, rotation: 25})
+
+                    setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 3600) 
+                    gsap.to('#newPokemonFront', {delay: 3.6, duration: 0, display: 'block'})  
+                    gsap.to('#pokeball', {delay: 3.9, display: 'none'})
+                    setTimeout(() => {document.getElementById('battleUILeft').innerHTML = `${currentName} escaped!`}, 3900)
                 }
             }
         }

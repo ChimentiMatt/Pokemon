@@ -279,3 +279,14 @@
   background-size: contain;
 }
 
+
+
+
+#pokeball{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 10rem;
+  display: none;
+  transform: rotate(35deg);
+}
