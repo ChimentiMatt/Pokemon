@@ -185,6 +185,8 @@ document.addEventListener("keydown", function (event) {
             if (fight){
                 playerDamage -= 10
                 newPokeDamage -= 30
+
+
                 battleText.innerHTML = "Charmander uses Scratch"
                 gsap.to('#charBack', {y: '-1rem', duration: .2})
                 gsap.to('#charBack', {delay: .2, y: '0rem', duration: .2})
@@ -202,9 +204,14 @@ document.addEventListener("keydown", function (event) {
                 inBattle = false
                 document.getElementById('battleScreen').style.display = 'none'
                 battleCounter = 0
+                gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
+                gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
+
             }
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
+
+                //successful catch
                 if (catchAttempt > newPokeDamage){
                     //reset pokeball if already used
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
@@ -212,7 +219,7 @@ document.addEventListener("keydown", function (event) {
 
                     document.getElementById('pokeball').style.display = 'block'
                     gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
-                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
+                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, opacity: 0})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
                     gsap.to('#pokeball', {delay: 2.3, rotation: 0})
@@ -231,7 +238,7 @@ document.addEventListener("keydown", function (event) {
 
                     document.getElementById('pokeball').style.display = 'block'
                     gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
-                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
+                    gsap.to('#newPokemonFront', {delay: .8, duration: 0, opacity: 0})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
                     gsap.to('#pokeball', {delay: 2.3, rotation: 0})
@@ -240,6 +247,7 @@ document.addEventListener("keydown", function (event) {
                     setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 3600) 
                     gsap.to('#newPokemonFront', {delay: 3.6, duration: 0, display: 'block'})  
                     gsap.to('#pokeball', {delay: 3.9, display: 'none'})
+                    gsap.to('#newPokemonFront', {delay: 3.9, duration: 0, opacity: 1})
                     setTimeout(() => {document.getElementById('battleUILeft').innerHTML = `${currentName} escaped!`}, 3900)
 
                     setTimeout(() => {battleText.innerHTML = `${currentName} attacks!`}, 4900)
@@ -273,9 +281,16 @@ document.addEventListener("keydown", function (event) {
 
         }
         else if (inBattle == false && battleCounter != battleTrigger){
+
             battleCounter += 1
-            console.log(battleCounter, 'battle counter')
-            console.log(battleTrigger)
+            // reset pokeball image
+            gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1, display: 'none'})
+
+            //reset hp bars
+            playerDamage = 100
+            newPokeDamage = 100
+            gsap.to('#newHpBarInner', {delay: 0, duration: 0, width: newPokeDamage+'%'})
+            gsap.to('#hpBarInner', {delay: 0, duration: 0, width: playerDamage+'%'})
         }
         else if (battleCounter == battleTrigger && inBattle == false ) {
             
@@ -286,7 +301,7 @@ document.addEventListener("keydown", function (event) {
             gsap.to('#charBack', {x: '-15rem'})
             setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
             battleCounter = -1
-            battleTrigger = Math.floor(Math.random() * 10)
+            battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
             battle()
         }
     }
