@@ -1,10 +1,4 @@
 
-const grid = document.getElementById('grid')
-let counter = 0
-
-let player = ''
-let playerId = ''
-
 const pokemonList = [
 'Bulbasaur',
 'Ivysaur',
@@ -156,6 +150,24 @@ const pokemonList = [
 'Dragonite',
 'Mewtwo',
 ]
+
+
+// title screen animations
+var tl = gsap.timeline({ repeat: -1})
+tl.to('#pressEnter', {duration: 1, color: 'white'})
+tl.to('#pressEnter', {duration: 1, color: 'silver'})
+
+let battleText = document.getElementById('battleUILeft')
+let currentName = ''
+let counter = 0
+let player = ''
+let playerId = ''
+let playerDamage = 100
+let newPokeDamage = 100
+let disableEnter = false
+
+// make grass field 
+const grid = document.getElementById('grid')
 for (let i = 0; i < 100; i++){
     if (i == 50){
         grid.innerHTML += '<div id="player" class='+counter+'></div>'
@@ -166,17 +178,6 @@ for (let i = 0; i < 100; i++){
         counter += 1
     }
 }
-var tl = gsap.timeline({ repeat: -1})
-tl.to('#pressEnter', {duration: 1, color: 'white'})
-tl.to('#pressEnter', {duration: 1, color: 'silver'})
-
-let battleText = document.getElementById('battleUILeft')
-let currentName = ''
-
-let playerDamage = 100
-let newPokeDamage = 100
-
-let disableEnter = false
 
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
@@ -199,6 +200,7 @@ document.addEventListener("keydown", function (event) {
                 gsap.to('#newHpBarInner', {delay: 1, width: newPokeDamage+'%'})
                 setTimeout(() => {disableEnter = false}, 3400)
 
+                // if pokemon faints
                 if (newPokeDamage <= 0){
                     setTimeout(() => {battleText.innerHTML = `${currentName} has fainted`}, 2200)
                     inBattle = false
@@ -207,6 +209,7 @@ document.addEventListener("keydown", function (event) {
                     battleCounter = 0
                     gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
+                    gsap.to('#charBack', {delay: 4, x: '15rem', duration: 0})
                 }
                 else {
                     setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
@@ -223,13 +226,15 @@ document.addEventListener("keydown", function (event) {
                 gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                 gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
                 disableEnter = false
+                gsap.to('#charBack', {x: '15rem', duration: 0})
+                
             }
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
 
-                //successful catch
+                // successful catch
                 if (catchAttempt > newPokeDamage){
-                    //reset pokeball if already used
+                    // reset pokeball if already used
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
                     document.getElementById('pokeball').src = 'images/pokeball.png'
 
@@ -241,16 +246,18 @@ document.addEventListener("keydown", function (event) {
                     gsap.to('#pokeball', {delay: 2.3, rotation: 0})
                     gsap.to('#pokeball', {delay: 2.5, rotation: 25})
 
-                    setTimeout(() => {battleText.innerHTML = `You caught ${currentName}!`}, 3400)
-
+                    setTimeout(() => {battleText.innerHTML = `You caught ${currentName}!`}, 3400 )
+                    
                     inBattle = false
                     gsap.to('#battleScreen', {delay: 4, display: 'none'})
+                    setTimeout(() => gsap.to('#charBack', {x: '15rem', duration: 0}), 5000 )
                     battleCounter = 0
+                    
 
                     setTimeout(() => {disableEnter = false}, 4000)
                 }
                 else{
-                    //reset pokeball if already used
+                    // reset pokeball if already used
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
                     document.getElementById('pokeball').src = 'images/pokeball.png'
 
@@ -326,6 +333,7 @@ document.addEventListener("keydown", function (event) {
         }
     }
     function battle() {
+
         let randomPokemon = Math.floor(Math.random() * 149)
         let newPokemon = pokemonList[randomPokemon]
         currentName = newPokemon
@@ -340,6 +348,7 @@ document.addEventListener("keydown", function (event) {
             console.log(data)
             newPokemonLowercase.src=sprite
             gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
+            
         })
     }
 
