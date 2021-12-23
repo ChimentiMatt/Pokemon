@@ -176,12 +176,15 @@ let currentName = ''
 let playerDamage = 100
 let newPokeDamage = 100
 
+let disableEnter = false
+
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
         if (!inBattle){
             document.getElementById('introScreen').style.display = 'none'
         }
-        else if (inBattle){
+        else if (inBattle && disableEnter == false ){
+            disableEnter = true
             if (fight){
                 playerDamage -= 10
                 newPokeDamage -= 30
@@ -194,11 +197,24 @@ document.addEventListener("keydown", function (event) {
                 gsap.to('#newPokemonFront', {delay: .5, duration: .2, rotation: 0})
                 setTimeout(() => {battleText.innerHTML = `It's super effective!`}, 1200)
                 gsap.to('#newHpBarInner', {delay: 1, width: newPokeDamage+'%'})
-                setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
-                gsap.to('#charBack', {delay: 2.5, duration: .2, rotation: 5})
-                gsap.to('#charBack', {delay: 2.7, duration: .2, rotation: 0})
-                setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 3400)
-                gsap.to('#hpBarInner', {delay: 3.3, width: playerDamage+'%'})
+                setTimeout(() => {disableEnter = false}, 3400)
+
+                if (newPokeDamage <= 0){
+                    setTimeout(() => {battleText.innerHTML = `${currentName} has fainted`}, 2200)
+                    inBattle = false
+                    gsap.to('#battleScreen', {delay: 3, display: 'none'})
+                    
+                    battleCounter = 0
+                    gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
+                    gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
+                }
+                else {
+                    setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
+                    gsap.to('#charBack', {delay: 2.5, duration: .2, rotation: 5})
+                    gsap.to('#charBack', {delay: 2.7, duration: .2, rotation: 0})
+                    setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 3400)
+                    gsap.to('#hpBarInner', {delay: 3.3, width: playerDamage+'%'})
+                }
             }
             else if (run){
                 inBattle = false
@@ -206,7 +222,7 @@ document.addEventListener("keydown", function (event) {
                 battleCounter = 0
                 gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                 gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
-
+                disableEnter = false
             }
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
@@ -230,6 +246,8 @@ document.addEventListener("keydown", function (event) {
                     inBattle = false
                     gsap.to('#battleScreen', {delay: 4, display: 'none'})
                     battleCounter = 0
+
+                    setTimeout(() => {disableEnter = false}, 4000)
                 }
                 else{
                     //reset pokeball if already used
@@ -256,6 +274,8 @@ document.addEventListener("keydown", function (event) {
                     setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 5500)
                     playerDamage -= 10
                     gsap.to('#hpBarInner', {delay: 5.5, width: playerDamage+'%'})
+
+                    setTimeout(() => {disableEnter = false}, 5500)
                 }
             }
         }
