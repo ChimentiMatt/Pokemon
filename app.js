@@ -188,13 +188,16 @@ for (let i = 0; i < 100; i++){
 document.addEventListener("keydown", function (event) {
     if (event.key == 'Enter'){
 
+        // removes intro screen
         if (!inBattle){
             document.getElementById('introScreen').style.display = 'none'
         }
         else if (inBattle && disableEnter == false ){
             disableEnter = true
+
+            //if enter on fight
             if (fight){
-                playerDamage -= 10
+                playerDamage -= Math.floor(Math.random() * (10 + 25)+  10) 
                 newPokeDamage -= Math.floor(Math.random() * (10 + 30)+  10) 
 
                 battleText.innerHTML = "Charmander uses Scratch"
@@ -211,20 +214,30 @@ document.addEventListener("keydown", function (event) {
                     setTimeout(() => {battleText.innerHTML = `${currentName} has fainted`}, 2200)
                     inBattle = false
                     gsap.to('#battleScreen', {delay: 3, display: 'none'})
-                    
                     battleCounter = 0
                     gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
                     gsap.to('#charBack', {delay: 4, x: '15rem', duration: 0})
                 }
+                
+
+                // if pokemon takes damage
                 else {
                     setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
                     gsap.to('#charBack', {delay: 2.5, duration: .2, rotation: 5})
                     gsap.to('#charBack', {delay: 2.7, duration: .2, rotation: 0})
                     setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 3400)
                     gsap.to('#hpBarInner', {delay: 3.3, width: playerDamage+'%'})
+
+                    // if charmander faints
+                    if (playerDamage <= 0){
+                        setTimeout(() => {battleText.innerHTML = `Charmander has fainted`}, 4400)
+                        gsap.to('#battleScreen', {delay: 5.4, display: 'none'})
+                        inBattle = false
+                    }
                 }
             }
+            // if enter is hit on run
             else if (run){
                 inBattle = false
                 document.getElementById('battleScreen').style.display = 'none'
@@ -235,6 +248,7 @@ document.addEventListener("keydown", function (event) {
                 gsap.to('#charBack', {x: '15rem', duration: 0})
                 
             }
+            // if enter is hit on catch
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
 
@@ -262,6 +276,7 @@ document.addEventListener("keydown", function (event) {
 
                     setTimeout(() => {disableEnter = false}, 4000)
                 }
+                // if catch attempt fails
                 else{
                     // reset pokeball if already used
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
@@ -291,13 +306,16 @@ document.addEventListener("keydown", function (event) {
                     setTimeout(() => {disableEnter = false}, 5500)
                 }
             }
+            // if enter is hit on pokedex
             else if (pokemon){
                 let pokdedexDom = document.getElementById('pokedex')
+                // toggles screen on hitting enter
                 if (pokedexScreen){
                     pokdedexDom.style.display = 'none'
                     disableEnter = false
                     pokedexScreen = false
                 }
+                // shows pokedex
                 else{
                     pokedexScreen = true
                     disableEnter = false
@@ -316,7 +334,6 @@ document.addEventListener("keydown", function (event) {
                             else{
                                 newElement += `<p class="pokedexItems">${i + 1} Nidoran</p>` 
                             }
-
                         }
                         // if Nidoqueen
                         else if (i == 32 -1){

@@ -93,7 +93,7 @@
 
 #charBar{
   position: absolute;
-  height: 4rem;
+  height: 3rem;
   width: 10rem;
   border: 1px dotted black;
   bottom: 5rem;
@@ -221,7 +221,7 @@
   position: absolute;
   top: .5rem;
   right: .5rem;
-  height: 4rem;
+  height: 3rem;
   width: 10rem;
   border: 1px dotted black;
   border-radius: 5px;
