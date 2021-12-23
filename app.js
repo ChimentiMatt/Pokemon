@@ -206,13 +206,23 @@ document.addEventListener("keydown", function (event) {
             else if (bag){
                 let catchAttempt = Math.floor(Math.random() * 100)
                 if (catchAttempt > newPokeDamage){
+                    //reset pokeball if already used
+                    gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
+                    document.getElementById('pokeball').src = 'images/pokeball.png'
+
                     document.getElementById('pokeball').style.display = 'block'
-                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2})
+                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
                     gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
                     gsap.to('#pokeball', {delay: 2.3, rotation: 0})
                     gsap.to('#pokeball', {delay: 2.5, rotation: 25})
+
+                    setTimeout(() => {battleText.innerHTML = `You caught ${currentName}!`}, 3400)
+
+                    inBattle = false
+                    gsap.to('#battleScreen', {delay: 4, display: 'none'})
+                    battleCounter = 0
                 }
                 else{
                     //reset pokeball if already used
@@ -220,7 +230,7 @@ document.addEventListener("keydown", function (event) {
                     document.getElementById('pokeball').src = 'images/pokeball.png'
 
                     document.getElementById('pokeball').style.display = 'block'
-                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2})
+                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
                     gsap.to('#newPokemonFront', {delay: .8, duration: 0, display: 'none'})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
@@ -231,6 +241,13 @@ document.addEventListener("keydown", function (event) {
                     gsap.to('#newPokemonFront', {delay: 3.6, duration: 0, display: 'block'})  
                     gsap.to('#pokeball', {delay: 3.9, display: 'none'})
                     setTimeout(() => {document.getElementById('battleUILeft').innerHTML = `${currentName} escaped!`}, 3900)
+
+                    setTimeout(() => {battleText.innerHTML = `${currentName} attacks!`}, 4900)
+                    gsap.to('#charBack', {delay: 5.5, duration: .2, rotation: 5})
+                    gsap.to('#charBack', {delay: 5.7, duration: .2, rotation: 0})
+                    setTimeout(() => {battleText.innerHTML = `It's not ever effective`}, 5500)
+                    playerDamage -= 10
+                    gsap.to('#hpBarInner', {delay: 5.5, width: playerDamage+'%'})
                 }
             }
         }
