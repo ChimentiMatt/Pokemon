@@ -172,6 +172,14 @@ let newPokeDamage = 100
 let disableEnter = false
 let pokedexScreen = false
 
+let battleCounter = 0
+let battleTrigger = 5
+let inBattle = false
+let fight = true
+let bag = false
+let pokemon = false
+let run = false
+
 // make grass field 
 const grid = document.getElementById('grid')
 for (let i = 0; i < 100; i++){
@@ -186,7 +194,11 @@ for (let i = 0; i < 100; i++){
 }
 
 document.addEventListener("keydown", function (event) {
-    if (event.key == 'Enter'){
+    keyDown(event.key)
+})
+
+function keyDown(event) {
+        if (event == 'Enter'){
 
         // removes intro screen
         if (!inBattle){
@@ -378,83 +390,94 @@ document.addEventListener("keydown", function (event) {
             }
         }
     }
-})
+}
 
 //make square on grid
 let squares = Array.from(document.querySelectorAll('#grid div'))
 
-let battleCounter = 0
-let battleTrigger = 5
-let inBattle = false
-let fight = true
-let bag = false
-let pokemon = false
-let run = false
-
 // Player Moves Right
 document.addEventListener("keydown", function (event) {
 
-
-    function encounter() {
-        if (inBattle){
-        }
-        else if (inBattle == false && battleCounter != battleTrigger){
-
-            battleCounter += 1
-            // reset pokeball image
-            gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1, display: 'none'})
-
-            //reset hp bars
-            playerDamage = 100
-            newPokeDamage = 100
-            gsap.to('#newHpBarInner', {delay: 0, duration: 0, width: newPokeDamage+'%'})
-            gsap.to('#hpBarInner', {delay: 0, duration: 0, width: playerDamage+'%'})
-        }
-        else if (battleCounter == battleTrigger && inBattle == false ) {
-            battle()
-            
-            inBattle = true
-            document.getElementById('battleScreen').style.display = 'flex'
-
-            gsap.to('#battleUIRight', {delay: 1.5, display: 'block'})
-            gsap.to('#charBack', {x: '-15rem'})
-            setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
-            battleCounter = -1
-            battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
-        }
-    }
-    function battle() {
-
-        let randomPokemon = Math.floor(Math.random() * pokemonList.length)
-        let newPokemon = pokemonList[randomPokemon]
-        currentName = newPokemon
-        if (currentName == '122'){
-            currentName = 'Mr. Mime'
-        }
-        else if (currentName == '29'){
-            currentName = 'Nidoran m'
-        }
-        else if (currentName =='32'){
-            currentName = 'Nidoran f' 
-
-        }
-
-        document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'
-        let newPokemonLowercase = newPokemon.toLowerCase()
-        gsap.to('#newPokemonFront', {opacity: 0, duration: 0})
-        fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
-        .then(response => response.json())
-        .then(data => {
-            let newPokemonLowercase = document.getElementById('newPokemonFront')
-            let sprite = data.sprites.front_default
-            // console.log(data)
-            newPokemonLowercase.src=sprite
-            gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
-            
-        })
-    }
-
     if (event.key == 'ArrowRight'){
+        arrowRight()
+    }
+ 
+    // Player Moves Left
+    if (event.key == 'ArrowLeft'){
+        arrowLeft()
+        }
+
+    // Player Moves Down
+    if (event.key == 'ArrowDown'){
+        arrowDown()
+        }
+    
+    // Player Moves Up
+    if (event.key == 'ArrowUp'){
+        arrowUp()
+        }
+
+})
+
+function encounter() {
+    if (inBattle){
+    }
+    else if (inBattle == false && battleCounter != battleTrigger){
+
+        battleCounter += 1
+        // reset pokeball image
+        gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1, display: 'none'})
+
+        //reset hp bars
+        playerDamage = 100
+        newPokeDamage = 100
+        gsap.to('#newHpBarInner', {delay: 0, duration: 0, width: newPokeDamage+'%'})
+        gsap.to('#hpBarInner', {delay: 0, duration: 0, width: playerDamage+'%'})
+    }
+    else if (battleCounter == battleTrigger && inBattle == false ) {
+        battle()
+        
+        inBattle = true
+        document.getElementById('battleScreen').style.display = 'flex'
+
+        gsap.to('#battleUIRight', {delay: 1.5, display: 'block'})
+        gsap.to('#charBack', {x: '-15rem'})
+        setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
+        battleCounter = -1
+        battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
+    }
+}
+
+function battle() {
+    let randomPokemon = Math.floor(Math.random() * pokemonList.length)
+    let newPokemon = pokemonList[randomPokemon]
+    currentName = newPokemon
+    if (currentName == '122'){
+        currentName = 'Mr. Mime'
+    }
+    else if (currentName == '29'){
+        currentName = 'Nidoran m'
+    }
+    else if (currentName =='32'){
+        currentName = 'Nidoran f' 
+    }
+
+    document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'
+    let newPokemonLowercase = newPokemon.toLowerCase()
+    gsap.to('#newPokemonFront', {opacity: 0, duration: 0})
+    fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
+    .then(response => response.json())
+    .then(data => {
+        let newPokemonLowercase = document.getElementById('newPokemonFront')
+        let sprite = data.sprites.front_default
+        // console.log(data)
+        newPokemonLowercase.src=sprite
+        gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
+    })
+}
+
+function arrowRight() {
+
         player = document.getElementById('player')
 
         if (inBattle){
@@ -487,118 +510,197 @@ document.addEventListener("keydown", function (event) {
                 encounter()
                 }
             }
-        }
+}
 
 
-    // Player Moves Left
-    else if (event.key == 'ArrowLeft'){
-        player = document.getElementById('player')
+function arrowLeft() {
+    player = document.getElementById('player')
         
-        if (inBattle){
-            if (bag){
-                document.getElementById('fightArrow').style.display = 'flex'
-                document.getElementById('bagArrow').style.display = 'none'
-                bag = false
-                fight = true
-            }
-            else if (run){
-                document.getElementById('pokeArrow').style.display = 'flex'
-                document.getElementById('runArrow').style.display = 'none'
-                run = false
-                pokemon = true    
-            }
+    if (inBattle){
+        if (bag){
+            document.getElementById('fightArrow').style.display = 'flex'
+            document.getElementById('bagArrow').style.display = 'none'
+            bag = false
+            fight = true
         }
+        else if (run){
+            document.getElementById('pokeArrow').style.display = 'flex'
+            document.getElementById('runArrow').style.display = 'none'
+            run = false
+            pokemon = true    
+        }
+    }
+    else{ 
+        // Stop player from moving outside boundary
+        if (player.classList[0] % 10 == 0){
+        }
+
         else{ 
-            // Stop player from moving outside boundary
-            if (player.classList[0] % 10 == 0){
-            }
-
-            else{ 
-                playerId = player.className
-                playerId = parseInt(playerId)
-                squares[playerId].removeAttribute('id')
-                squares[playerId].classList.add('squares')
-                squares[playerId].style.backgroundImage = "url('images/grass.png')"
-                squares[playerId - 1].id = 'player'
-                squares[playerId - 1].classList.remove('squares')
-                squares[playerId - 1].style.backgroundImage = "url('images/redLeft.png'), url('images/grass.png')"
-                encounter()
-                }
-            }
-        }
-
-    // Player Moves Down
-    else if (event.key == 'ArrowDown'){
-        player = document.getElementById('player')
-
-
-        if (inBattle){
-            if (fight){
-                document.getElementById('fightArrow').style.display = 'none'
-                document.getElementById('pokeArrow').style.display = 'flex'
-                fight = false
-                pokemon = true
-            }
-            else if (bag){
-                document.getElementById('bagArrow').style.display = 'none'
-                document.getElementById('runArrow').style.display = 'flex'
-                bag = false
-                run = true   
-            }
-
-        }
-        // Stop player from moving outside boundary
-        if (player.classList[0] > 89){
-        }
-        else {
             playerId = player.className
             playerId = parseInt(playerId)
             squares[playerId].removeAttribute('id')
             squares[playerId].classList.add('squares')
             squares[playerId].style.backgroundImage = "url('images/grass.png')"
-            squares[playerId + 10].id = 'player'
-            squares[playerId + 10].classList.remove('squares')
-            squares[playerId + 10].style.backgroundImage = "url('images/redFront.png'), url('images/grass.png')"
+            squares[playerId - 1].id = 'player'
+            squares[playerId - 1].classList.remove('squares')
+            squares[playerId - 1].style.backgroundImage = "url('images/redLeft.png'), url('images/grass.png')"
             encounter()
             }
         }
-    
-    // Player Moves Up
-    else if (event.key == 'ArrowUp'){
-        player = document.getElementById('player')
+}
+
+function arrowDown() {
+    player = document.getElementById('player')
+
+    if (inBattle){
+        if (fight){
+            document.getElementById('fightArrow').style.display = 'none'
+            document.getElementById('pokeArrow').style.display = 'flex'
+            fight = false
+            pokemon = true
+        }
+        else if (bag){
+            document.getElementById('bagArrow').style.display = 'none'
+            document.getElementById('runArrow').style.display = 'flex'
+            bag = false
+            run = true   
+        }
+
+    }
+    // Stop player from moving outside boundary
+    if (player.classList[0] > 89){
+    }
+    else {
+        playerId = player.className
+        playerId = parseInt(playerId)
+        squares[playerId].removeAttribute('id')
+        squares[playerId].classList.add('squares')
+        squares[playerId].style.backgroundImage = "url('images/grass.png')"
+        squares[playerId + 10].id = 'player'
+        squares[playerId + 10].classList.remove('squares')
+        squares[playerId + 10].style.backgroundImage = "url('images/redFront.png'), url('images/grass.png')"
+        encounter()
+        }
+}
+
+function arrowUp() {
+    player = document.getElementById('player')
         
-        if (inBattle){
-            if (pokemon){
-                document.getElementById('pokeArrow').style.display = 'none'
-                document.getElementById('fightArrow').style.display = 'flex'
-                fight = true
-                pokemon = false
-            }
-            else if (run){
-                document.getElementById('runArrow').style.display = 'none'
-                document.getElementById('bagArrow').style.display = 'flex'
-                bag = true
-                run = false
-            }
+    if (inBattle){
+        if (pokemon){
+            document.getElementById('pokeArrow').style.display = 'none'
+            document.getElementById('fightArrow').style.display = 'flex'
+            fight = true
+            pokemon = false
         }
-
-        // Stop player from moving outside boundary
-        if (player.classList[0] < 10){
+        else if (run){
+            document.getElementById('runArrow').style.display = 'none'
+            document.getElementById('bagArrow').style.display = 'flex'
+            bag = true
+            run = false
         }
-        else{
-            playerId = player.className
-            playerId = parseInt(playerId)
-            squares[playerId].removeAttribute('id')
-            squares[playerId].classList.add('squares')
-            squares[playerId].style.backgroundImage = "url('images/grass.png')"
-            squares[playerId - 10].id = 'player'
-            squares[playerId - 10].classList.remove('squares')
-            squares[playerId - 10].style.backgroundImage = "url('images/redBack.png'), url('images/grass.png')"
-            encounter()
-            }
-        }
+    }
 
-    })
+    // Stop player from moving outside boundary
+    if (player.classList[0] < 10){
+    }
+    else{
+        playerId = player.className
+        playerId = parseInt(playerId)
+        squares[playerId].removeAttribute('id')
+        squares[playerId].classList.add('squares')
+        squares[playerId].style.backgroundImage = "url('images/grass.png')"
+        squares[playerId - 10].id = 'player'
+        squares[playerId - 10].classList.remove('squares')
+        squares[playerId - 10].style.backgroundImage = "url('images/redBack.png'), url('images/grass.png')"
+        encounter()
+    }
+}
 
 
-    
+
+document.getElementById('arrowRight').onclick = function() {
+    arrowRight()
+}
+
+document.getElementById('arrowLeft').onclick = function() {
+    arrowLeft()
+}
+document.getElementById('arrowDown').onclick = function() {
+    arrowDown()
+}
+
+document.getElementById('arrowUp').onclick = function() {
+    arrowUp()
+}
+
+document.getElementById('introScreen').onclick = function() {
+    let event = "Enter"
+    keyDown(event)
+}
+
+// if fight button is clicked on
+document.getElementById('fightBtn').onclick = function() {
+    let event = "Enter"
+    fight = true
+    bag = false
+    pokemon = false
+    run = false
+    document.getElementById('fightArrow').style.display = 'flex'
+    document.getElementById('bagArrow').style.display = 'none'
+    document.getElementById('pokeArrow').style.display = 'none'
+    document.getElementById('runArrow').style.display = 'none'
+    keyDown(event)
+}
+
+// if catch button is clicked on
+document.getElementById('bagBtn').onclick = function() {
+    let event = "Enter"
+    fight = false
+    bag = true
+    pokemon = false
+    run = false
+    document.getElementById('fightArrow').style.display = 'none'
+    document.getElementById('bagArrow').style.display = 'flex'
+    document.getElementById('pokeArrow').style.display = 'none'
+    document.getElementById('runArrow').style.display = 'none'
+    keyDown(event)
+}
+
+// if Pokedex button is clicked on
+document.getElementById('pokedexBtn').onclick = function() {
+    let event = "Enter"
+    fight = false
+    bag = false
+    pokemon = true
+    run = false
+    document.getElementById('fightArrow').style.display = 'none'
+    document.getElementById('bagArrow').style.display = 'none'
+    document.getElementById('pokeArrow').style.display = 'flex'
+    document.getElementById('runArrow').style.display = 'none'
+    keyDown(event)
+}
+
+// if Run button is clicked on
+document.getElementById('runBtn').onclick = function() {
+    let event = "Enter"
+    fight = false
+    bag = false
+    pokemon = false
+    run = true
+    document.getElementById('fightArrow').style.display = 'none'
+    document.getElementById('bagArrow').style.display = 'none'
+    document.getElementById('pokeArrow').style.display = 'none'
+    document.getElementById('runArrow').style.display = 'flex'
+
+    pokedexScreen = false
+    keyDown(event)
+}
+
+
+
+// if click inside of pokedex screen
+document.getElementById('pokedex').onclick = function() {
+    document.getElementById('pokedex').style.display = 'none'
+    pokedexScreen = false
+}
