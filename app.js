@@ -234,7 +234,7 @@ function keyDown(event) {
                     battleCounter = 0
                     gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                     gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
-                    gsap.to('#charBack', {delay: 4, x: '15rem', duration: 0})
+                    gsap.to('#charBack', {delay: 4, x: '14rem', duration: 0})
                 }
                 
 
@@ -262,7 +262,7 @@ function keyDown(event) {
                 gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
                 gsap.to('#pokeball', {delay: 0, duration: 0, y: '0rem', x: '0rem', scale: 1})
                 disableEnter = false
-                gsap.to('#charBack', {x: '15rem', duration: 0})
+                gsap.to('#charBack', {x: '14rem', duration: 0})
                 
             }
             // if enter is hit on catch
@@ -276,7 +276,7 @@ function keyDown(event) {
                     document.getElementById('pokeball').src = 'images/pokeball.png'
 
                     document.getElementById('pokeball').style.display = 'block'
-                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
+                    gsap.to('#pokeball', {y: '-9rem', x: '-.5rem', duration: .8, scale: .2, rotation: 15})
                     gsap.to('#newPokemonFront', {delay: .8, duration: 0, opacity: 0})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
@@ -287,7 +287,7 @@ function keyDown(event) {
                     
                     inBattle = false
                     gsap.to('#battleScreen', {delay: 4, display: 'none'})
-                    setTimeout(() => gsap.to('#charBack', {x: '15rem', duration: 0}), 5000 )
+                    setTimeout(() => gsap.to('#charBack', {x: '14rem', duration: 0}), 5000 )
                     battleCounter = 0
                     caughtList.push(currentName)
 
@@ -300,7 +300,7 @@ function keyDown(event) {
                     document.getElementById('pokeball').src = 'images/pokeball.png'
 
                     document.getElementById('pokeball').style.display = 'block'
-                    gsap.to('#pokeball', {y: '-9rem', x: '-10.5rem', duration: .8, scale: .2, rotation: 15})
+                    gsap.to('#pokeball', {y: '-9rem', x: '-.5rem', duration: .8, scale: .2, rotation: 15})
                     gsap.to('#newPokemonFront', {delay: .8, duration: 0, opacity: 0})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
                     gsap.to('#pokeball', {delay: 1.7, rotation: 25})
@@ -446,7 +446,7 @@ function encounter() {
         document.getElementById('battleScreen').style.display = 'flex'
 
         gsap.to('#battleUIRight', {delay: 1.5, display: 'block'})
-        gsap.to('#charBack', {x: '-15rem'})
+        gsap.to('#charBack', {x: '-14rem'})
         setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
         battleCounter = -1
         battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
@@ -459,12 +459,18 @@ function battle() {
     currentName = newPokemon
     if (currentName == '122'){
         currentName = 'Mr. Mime'
+        document.getElementById('battleUILeft').innerHTML =`A wild Mr. Mime appears!`
     }
     else if (currentName == '29'){
         currentName = 'Nidoran m'
+        document.getElementById('battleUILeft').innerHTML =`A wild Nidoran m appears!`
     }
     else if (currentName =='32'){
-        currentName = 'Nidoran f' 
+        currentName = 'Nidoran f'
+        document.getElementById('battleUILeft').innerHTML =`A wild Nidoran f appears!` 
+    }
+    else{
+        document.getElementById('battleUILeft').innerHTML =`A wild ${newPokemon} appears!`
     }
 
     document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'

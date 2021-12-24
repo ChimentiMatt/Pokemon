@@ -106,7 +106,7 @@
   margin-top: 0rem;
   text-align: center;
   width: 20em;
-  background: white;
+  background-image: linear-gradient(to top, #ffffff, #fff9ff, #fff3f2, #fff3d5, #fbfbc4);
   height: 20rem;
   display: none;
   /* border-radius: 5px; */
@@ -116,12 +116,13 @@
 
 #charBar{
   position: absolute;
-  height: 3rem;
+  height: 2.5rem;
   width: 10rem;
-  border: 1px dotted black;
+  border: 2px solid rgb(46, 46, 46);
   bottom: 5rem;
   right: 0rem;
   border-radius: 5px;
+  background: rgb(255, 242, 222);
 }
 
 #charBarTop{
@@ -130,17 +131,33 @@
 #charBarTop p{
   padding-left: .5rem;
 }
+
+#charRing{
+
+  position: absolute;
+  z-index: -5;
+  top: -2rem;
+  left: 0rem;
+  width: 10rem;
+  height: 3rem;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: none;
+  
+}
+
 #hpBar{
-  width: 70%;
-  margin-left: 30%;
-  height: .7rem;
+  width: 8rem;
+  margin-left: 10%;
+  height: .5rem;
   background: red;
   border-radius: 10px;
   overflow: hidden;
+  top: .5rem;
 }
 
 #hpBarInner{
-  width: 100%;
+
   height: .7rem;
   background: green;
 }
@@ -152,40 +169,57 @@
 
 #charBarBottom{
   display: flex;
-  flex-direction: column;
+}
+
+#playerHpText {
+  position: relative;
+  font-size: .5rem;
+  top: -.15rem;
+  left: .7rem;
+  font-weight: bold;
 }
 
 #charBack{
   height: 10rem;
   position: absolute;
+  z-index: 10;
   bottom: 3rem;
   right: -5rem;
 }
 #battleUI{
   height: 5rem;
   position: absolute;
+  z-index: 5;
   bottom: .5rem;
   width: 95%;
   border-radius: 5px;
-  border: 1px dotted black;
-  background: white;
+  border: 3px solid tan;
   display: flex;
+  border-right: none;
 }
 
 #battleUILeft{
   text-align: left;
-  padding-top: 1rem;
-  width: 80%;
+  padding-top: .7rem;
+  width: 100%;
   padding-left: 1rem;
+  background: rgb(63, 86, 121);
+  color: white;
+
 }
 
 #battleUIRight{
-  width: 13rem;
+  width: 14rem;
   height: 5rem;
-  border: 1px dotted black;
+  position: relative;
+  top: -.2rem;
+
+  z-index: 6;
+  border: 3px solid tan;
   padding-left: 1rem;
   border-radius: 5px;
   display: none;
+  background: white;
 }
 
 #battleUIRightTop{
@@ -232,22 +266,33 @@
   margin-top: .2rem;
 }
 
+#newRing{
+  position: relative;
+  top: 3.5rem;
+  left: 5rem;
+  width: 10rem;
+  height: 3rem;
+  border: 5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: none;
+}
 
 #newPokemonFront{
   position: absolute;
   top: -1rem;
-  left: 1rem;
+  right: 1rem;
   height: 8rem;
 }
 
 #newPokemonInfo{
   position: absolute;
   top: .5rem;
-  right: .5rem;
-  height: 3rem;
+  left: .5rem;
+  height: 2.5rem;
   width: 10rem;
-  border: 1px dotted black;
+  border: 2px solid rgb(46, 46, 46);
   border-radius: 5px;
+  background: rgb(255, 242, 222);
 }
 
 #newPokemonName{
@@ -261,10 +306,10 @@
 
 #newHpBar{
   position: absolute;
-  top: 1.5rem;
-  width: 70%;
-  margin-left: 30%;
-  height: .7rem;
+  top: 1.6rem;
+  width: 8rem;
+  margin-left: 18%;
+  height: .5rem;
   background: red;
   border-radius: 10px;
   overflow: hidden;
@@ -275,6 +320,14 @@
   height: .7rem;
   background: green;
 } 
+
+#newHpText{
+  position: absolute;
+  font-size: .5rem;
+  font-weight: bold;
+  top: 1.45rem;
+  left: .7rem;
+}
 
 #newHpValue{
   position: absolute; 
@@ -315,8 +368,8 @@
 }
 
 #pokedex{
-  position: relative;
-  z-index: 5;
+  position: absolute;
+  z-index: 15;
   width: 100%;
   height: 100%;
   background: rgb(248, 248, 248);
