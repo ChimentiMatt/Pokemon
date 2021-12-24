@@ -154,14 +154,9 @@ const pokemonList = [
 
 const caughtList = ['Charmander']
 
-var source = "audio/music.mp3"
-var audio = document.createElement("audio");
-audio.autoplay = true;
-audio.load()
-audio.addEventListener("load", function() { 
-    audio.play(); 
-}, true);
-audio.src = source;
+a = document.getElementById("audioCont")
+a.play()
+setTimeout(a, 3000)
 
 
 // title screen animations

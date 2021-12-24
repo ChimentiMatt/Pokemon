@@ -7,6 +7,12 @@
     font-family: 'Poppins', sans-serif;
   }
 
+#audioCont{
+  /* opacity: 0; */
+
+  /* height: 0; */
+}
+
 #notScaledBackground{
   position: absolute;
   background: #f2ac00;
