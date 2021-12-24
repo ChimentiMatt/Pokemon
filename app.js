@@ -639,6 +639,12 @@ document.getElementById('introScreen').onclick = function() {
     keyDown(event)
 }
 
+document.getElementById('enterBtn').onclick = function() {
+    let event = "Enter"
+    keyDown(event)
+}
+
+
 // if fight button is clicked on
 document.getElementById('fightBtn').onclick = function() {
     let event = "Enter"
