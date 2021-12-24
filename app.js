@@ -154,10 +154,6 @@ const pokemonList = [
 
 const caughtList = ['Charmander']
 
-a = document.getElementById("audioCont")
-a.play()
-setTimeout(a, 3000)
-
 
 // title screen animations
 var tl = gsap.timeline({ repeat: -1})
@@ -205,6 +201,13 @@ function keyDown(event) {
         // removes intro screen
         if (!inBattle){
             document.getElementById('introScreen').style.display = 'none'
+            //play music first time
+            audio = document.getElementById("audioCont")
+            audio.play()
+            // make music loop
+            setInterval(() => { audio.play()
+            }, 120000);
+
         }
         else if (inBattle && disableEnter == false ){
             disableEnter = true
@@ -704,7 +707,6 @@ document.getElementById('runBtn').onclick = function() {
     pokedexScreen = false
     keyDown(event)
 }
-
 
 
 // if click inside of pokedex screen
