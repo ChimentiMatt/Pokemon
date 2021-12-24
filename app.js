@@ -152,10 +152,17 @@ const pokemonList = [
 'Mewtwo',
 ]
 
-// const pokemonList = [
-//     '32'
-// ]
 const caughtList = ['Charmander']
+
+var source = "audio/music.mp3"
+var audio = document.createElement("audio");
+audio.autoplay = true;
+audio.load()
+audio.addEventListener("load", function() { 
+    audio.play(); 
+}, true);
+audio.src = source;
+
 
 // title screen animations
 var tl = gsap.timeline({ repeat: -1})
