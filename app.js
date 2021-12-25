@@ -240,6 +240,8 @@ function keyDown(event) {
 
                 // if pokemon takes damage
                 else {
+                    gsap.to('#newPokemonFront', {delay: 2, y: '1rem', duration: .2})
+                    gsap.to('#newPokemonFront', {delay: 2.2, y: '0rem', duration: .2})
                     setTimeout(() => {battleText.innerHTML = `${currentName} attacks`}, 2200)
                     gsap.to('#charBack', {delay: 2.5, duration: .2, rotation: 5})
                     gsap.to('#charBack', {delay: 2.7, duration: .2, rotation: 0})
