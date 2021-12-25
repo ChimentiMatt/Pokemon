@@ -214,7 +214,7 @@ function keyDown(event) {
 
             //if enter on fight
             if (fight){
-                playerDamage -= Math.floor(Math.random() * (10 + 25)+  10) 
+                playerDamage -= Math.floor(Math.random() * (10 + 23)+  10) 
                 newPokeDamage -= Math.floor(Math.random() * (10 + 30)+  10) 
 
                 battleText.innerHTML = "Charmander uses Scratch"

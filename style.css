@@ -18,6 +18,18 @@
   height: 100vh;
 }
 
+#gitHub{
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  height: 4rem;
+  width: 4rem;
+}
+
+#gitHub:hover{
+  opacity: .7;
+}
+
 #app{
   display: flex;
   flex-direction: column;
@@ -481,7 +493,7 @@
     background: #f2ac00;
     width: 100vw;
     height: 100vh;
-    transform: scale(0.5);
+    transform: scale(0.6);
   }
 
 }
