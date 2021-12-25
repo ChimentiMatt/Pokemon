@@ -343,7 +343,7 @@ function keyDown(event) {
                     for (let i = 0; i < pokemonList.length; i++){
                         // make text above list
                         if (i == 0){    
-                            newElement += `<p class="pokedexItems underline">${caughtList.length} /150 CAUGHT POKEMON</p>` 
+                            newElement += `<p class="pokedexItems underline">${caughtList.length} / 150 CAUGHT POKEMON</p>` 
                         
                             newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
                         }
@@ -488,7 +488,13 @@ function battle() {
         document.getElementById('battleUILeft').innerHTML =`A wild ${newPokemon} appears!`
     }
 
-    document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'
+    // display new pokemon name. If already caught, render with a ball next to name
+    if (caughtList.includes(currentName)){
+        document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5' + '<img class="caughtSymbol" src="images/pokeball.png">'
+    }
+    else{
+        document.getElementById('newPokemonName').innerHTML = currentName + '&nbspLv5'
+    }
     let newPokemonLowercase = newPokemon.toLowerCase()
     gsap.to('#newPokemonFront', {opacity: 0, duration: 0})
     fetch(`https://pokeapi.co/api/v2/pokemon/${newPokemonLowercase}`)
@@ -498,7 +504,7 @@ function battle() {
         let sprite = data.sprites.front_default
         // console.log(data)
         newPokemonLowercase.src=sprite
-        gsap.to('#newPokemonFront', {delay: .5, opacity: 1, duration: 1})
+        gsap.to('#newPokemonFront', {delay: 1.6, opacity: 1, duration: 1})
     })
 }
 
