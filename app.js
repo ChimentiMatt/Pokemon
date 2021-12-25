@@ -307,11 +307,11 @@ function keyDown(event) {
                     gsap.to('#pokeball', {delay: 3.3, rotation: 0})
                     gsap.to('#pokeball', {delay: 3.7, rotation: 40})
 
-                    setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 4500) 
+                    setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 4000) 
                     gsap.to('#newPokemonFront', {delay: 3.6, duration: 0, display: 'block'})  
-                    gsap.to('#pokeball', {delay: 3.9, display: 'none'})
-                    gsap.to('#newPokemonFront', {delay: 3.9, duration: 0, opacity: 1})
-                    setTimeout(() => {document.getElementById('battleUILeft').innerHTML = `${currentName} escaped!`}, 3900)
+                    gsap.to('#pokeball', {delay: 5, display: 'none'})
+                    gsap.to('#newPokemonFront', {delay: 4, duration: 0, opacity: 1})
+                    setTimeout(() => {document.getElementById('battleUILeft').innerHTML = `${currentName} escaped!`}, 4000)
 
                     setTimeout(() => {battleText.innerHTML = `${currentName} attacks!`}, 4900)
                     gsap.to('#charBack', {delay: 5.5, duration: .2, rotation: 5})
