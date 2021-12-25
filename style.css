@@ -505,3 +505,39 @@
   }
 
 }
+
+@media (max-height: 700px) {
+  #app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f2ac00;
+    width: 100vw;
+    height: 100vh;
+    transform: scale(0.5);
+  }
+}
+
+@media (max-height: 600px) {
+  #app{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f2ac00;
+    width: 100vw;
+    height: 100vh;
+    transform: scale(0.4);
+  }
+  #GBC{
+    top: -20rem;
+  }
+  #grid{
+    top: -15rem;
+  }
+  #enterBattle{
+    top: -15rem;
+  }
+  #introScreen{
+    top: -15rem;
+  }
+}
