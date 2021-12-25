@@ -49,7 +49,14 @@
   width: 20em;
   display: flex;
   flex-wrap: wrap;
+}
 
+#enterBattle{
+  position: absolute;
+  width: 20em;
+  height: 20rem;
+  background: rgba(255, 255, 255);
+  opacity: 0;
 }
 
 /* Intro Screen ------------------------------------------------------------------------------------------------ */

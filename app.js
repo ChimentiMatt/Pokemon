@@ -70,7 +70,7 @@ const pokemonList = [
 'Machamp',
 'Bellsprout',
 'Weepinbell',
-'Victreebell',
+'Victreebel',
 'Tentacool',
 'Tentacruel',
 'Geodude',
@@ -89,7 +89,7 @@ const pokemonList = [
 'Dewgong',
 'Grimer',
 'Muk',
-'Shelder',
+'Shellder',
 'Cloyster',
 'Gastly',
 'Haunter',
@@ -286,7 +286,7 @@ function keyDown(event) {
                     setTimeout(() => {battleText.innerHTML = `You caught ${currentName}!`}, 3400 )
                     
                     inBattle = false
-                    gsap.to('#battleScreen', {delay: 4, display: 'none'})
+                    gsap.to('#battleScreen', {delay: 4.5, display: 'none'})
                     setTimeout(() => gsap.to('#charBack', {x: '14rem', duration: 0}), 5000 )
                     battleCounter = 0
                     caughtList.push(currentName)
@@ -303,11 +303,11 @@ function keyDown(event) {
                     gsap.to('#pokeball', {y: '-9rem', x: '-.5rem', duration: .8, scale: .2, rotation: 15})
                     gsap.to('#newPokemonFront', {delay: .8, duration: 0, opacity: 0})
                     gsap.to('#pokeball', {delay: 1.5, rotation: 0})
-                    gsap.to('#pokeball', {delay: 1.7, rotation: 25})
-                    gsap.to('#pokeball', {delay: 2.3, rotation: 0})
-                    gsap.to('#pokeball', {delay: 2.5, rotation: 25})
+                    gsap.to('#pokeball', {delay: 1.7, rotation: 40})
+                    gsap.to('#pokeball', {delay: 3.3, rotation: 0})
+                    gsap.to('#pokeball', {delay: 3.7, rotation: 40})
 
-                    setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 3600) 
+                    setTimeout(() => {document.getElementById('pokeball').src = 'images/open.png'}, 4500) 
                     gsap.to('#newPokemonFront', {delay: 3.6, duration: 0, display: 'block'})  
                     gsap.to('#pokeball', {delay: 3.9, display: 'none'})
                     gsap.to('#newPokemonFront', {delay: 3.9, duration: 0, opacity: 1})
@@ -441,13 +441,21 @@ function encounter() {
     }
     else if (battleCounter == battleTrigger && inBattle == false ) {
         battle()
-        
-        inBattle = true
-        document.getElementById('battleScreen').style.display = 'flex'
+        gsap.to('#enterBattle', {duration: .2, opacity: .8})
+        gsap.to('#enterBattle', {delay: .2, opacity: 0, duration: .2})
+        gsap.to('#enterBattle', {delay: .4,opacity: .8, duration: .2})
+        gsap.to('#enterBattle', {delay: .6, opacity: 0, duration: .2})
+        gsap.to('#enterBattle', {delay: .8, opacity: 0, duration: .2})
+        gsap.to('#enterBattle', {delay: .10,opacity: .8, duration: .2})
 
-        gsap.to('#battleUIRight', {delay: 1.5, display: 'block'})
-        gsap.to('#charBack', {x: '-14rem'})
-        setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 1500)
+
+        inBattle = true
+        gsap.to('#battleScreen', {duration: 0, delay: 1, display: 'flex'})
+        // document.getElementById('battleScreen').style.display = 'flex'
+
+        gsap.to('#battleUIRight', {delay: 2.5, display: 'block'})
+        gsap.to('#charBack', {delay: 1,x: '-14rem'})
+        setTimeout(() => {battleText.innerHTML = 'What will Charmander do?'}, 2500)
         battleCounter = -1
         battleTrigger = Math.floor(Math.random() *(1 + 10) + 1)
     }
