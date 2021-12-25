@@ -1,4 +1,3 @@
-
 const pokemonList = [
 'Bulbasaur',
 'Ivysaur',
@@ -177,6 +176,7 @@ let fight = true
 let bag = false
 let pokemon = false
 let run = false
+let titleScreen = true
 
 // make grass field 
 const grid = document.getElementById('grid')
@@ -201,6 +201,7 @@ function keyDown(event) {
         // removes intro screen
         if (!inBattle){
             document.getElementById('introScreen').style.display = 'none'
+            titleScreen = false
             //play music first time
             audio = document.getElementById("audioCont")
             audio.play()
@@ -214,7 +215,7 @@ function keyDown(event) {
 
             //if enter on fight
             if (fight){
-                playerDamage -= Math.floor(Math.random() * (10 + 23)+  10) 
+                playerDamage -= Math.floor(Math.random() * (10 + 20)+  10) 
                 newPokeDamage -= Math.floor(Math.random() * (10 + 30)+  10) 
 
                 battleText.innerHTML = "Charmander uses Scratch"
@@ -327,79 +328,16 @@ function keyDown(event) {
             }
             // if enter is hit on pokedex
             else if (pokemon){
-                let pokdedexDom = document.getElementById('pokedex')
+                let pokededexDom = document.getElementById('pokedex')
                 // toggles screen on hitting enter
                 if (pokedexScreen){
-                    pokdedexDom.style.display = 'none'
+                    pokededexDom.style.display = 'none'
                     disableEnter = false
                     pokedexScreen = false
                 }
                 // shows pokedex
                 else{
-                    pokedexScreen = true
-                    disableEnter = false
-                    pokdedexDom.style.display = 'block'
-                    let newElement = ''
-                    console.log(pokemonList)
-                    console.log(caughtList)
-                    for (let i = 0; i < pokemonList.length; i++){
-                        // make text above list
-                        if (i == 0){    
-                            newElement += `<p class="pokedexItems underline">${caughtList.length} / 150 CAUGHT POKEMON</p>` 
-                        
-                            newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
-                        }
-                        // if Nidoran
-                        else if (i == 29 -1){
-                            // if caught
-                            if (caughtList.includes('Nidoran m') ){
-                                newElement += `<p class="pokedexItems">${i + 1} Nidoran m <img class="caughtBall" src='images/pokeball.png'/></p>` 
-                            }
-                            // if not caught
-                            else{
-                                newElement += `<p class="pokedexItems">${i + 1} Nidoran</p>` 
-                            }
-                        }
-                        // if Nidoqueen
-                        else if (i == 32 -1){
-                            // if caught
-                            if (caughtList.includes('Nidoran f') ){
-                                // alert('caught')
-                                newElement += `<p class="pokedexItems">${i + 1} Nidoran f <img class="caughtBall" src='images/pokeball.png'/></p>` 
-                            }
-                            // if not caught
-                            else{
-                                newElement += `<p class="pokedexItems">${i + 1}  Nidoqueen</p>`
-                            }
-                        }
-                        // If Mr. Mime
-                        else if (i == 122 -1){
-                            // if caught
-                            if (caughtList.includes('Mr. Mime') ){
-                                newElement += `<p class="pokedexItems">${i + 1} Mr. Mime <img class="caughtBall" src='images/pokeball.png'/></p>` 
-                            }
-                            // if not caught
-                            else{
-                                newElement += `<p class="pokedexItems">${i + 1}  Mr. Mime</p>`
-                            }
-                        }
-                        else{
-                            // if caught shows image with pokeball
-                            if (caughtList.includes(pokemonList[i]) ){
-                                // console.log(pokemonList[i],'i pokemon')
-                                newElement += `<p class="pokedexItems pokedexItemsCaught"><img class="caughtBall" src='images/pokeball.png'/>${i + 1} ${pokemonList[i]}</p>`
-                            }
-                            // if not caught no pokeball image
-                            else{
-                                newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
-                            }
-                        }
-                    }
-                    pokdedexDom.innerHTML = newElement
-                    //Srroll through pokedex screen
-                    var tl2 = gsap.timeline({ repeat: -1})
-                    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '-225rem', ease: 'none'})
-                    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '0rem', ease: 'none'})
+                    showPokedex()
                 }
             }
         }
@@ -419,17 +357,17 @@ document.addEventListener("keydown", function (event) {
     // Player Moves Left
     if (event.key == 'ArrowLeft'){
         arrowLeft()
-        }
+    }
 
     // Player Moves Down
     if (event.key == 'ArrowDown'){
         arrowDown()
-        }
+    }
     
     // Player Moves Up
     if (event.key == 'ArrowUp'){
         arrowUp()
-        }
+    }
 
 })
 
@@ -651,7 +589,73 @@ function arrowUp() {
     }
 }
 
-
+function showPokedex(){
+    let pokededexDom = document.getElementById('pokedex')
+    pokedexScreen = true
+    disableEnter = false
+    pokededexDom.style.display = 'block'
+    let newElement = ''
+    // console.log(pokemonList)
+    // console.log(caughtList)
+    for (let i = 0; i < pokemonList.length; i++){
+        // make text above list
+        if (i == 0){    
+            newElement += `<p class="pokedexItems underline">${caughtList.length} / 150 Pokémon Caught</p>` 
+        
+            newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
+        }
+        // if Nidoran
+        else if (i == 29 -1){
+            // if caught
+            if (caughtList.includes('Nidoran m') ){
+                newElement += `<p class="pokedexItems">${i + 1} Nidoran m <img class="caughtBall" src='images/pokeball.png'/></p>` 
+            }
+            // if not caught
+            else{
+                newElement += `<p class="pokedexItems">${i + 1} Nidoran</p>` 
+            }
+        }
+        // if Nidoqueen
+        else if (i == 32 -1){
+            // if caught
+            if (caughtList.includes('Nidoran f') ){
+                // alert('caught')
+                newElement += `<p class="pokedexItems">${i + 1} Nidoran f <img class="caughtBall" src='images/pokeball.png'/></p>` 
+            }
+            // if not caught
+            else{
+                newElement += `<p class="pokedexItems">${i + 1}  Nidoqueen</p>`
+            }
+        }
+        // If Mr. Mime
+        else if (i == 122 -1){
+            // if caught
+            if (caughtList.includes('Mr. Mime') ){
+                newElement += `<p class="pokedexItems">${i + 1} Mr. Mime <img class="caughtBall" src='images/pokeball.png'/></p>` 
+            }
+            // if not caught
+            else{
+                newElement += `<p class="pokedexItems">${i + 1}  Mr. Mime</p>`
+            }
+        }
+        else{
+            // if caught shows image with pokeball
+            if (caughtList.includes(pokemonList[i]) ){
+                // console.log(pokemonList[i],'i pokemon')
+                newElement += `<p class="pokedexItems pokedexItemsCaught"><img class="caughtBall" src='images/pokeball.png'/>${i + 1} ${pokemonList[i]}</p>`
+            }
+            // if not caught no pokeball image
+            else{
+                newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
+            }
+        }
+    }
+    pokededexDom.innerHTML = newElement
+    //Scroll through pokedex screen in a repeating timeline
+    var tl2 = gsap.timeline({ repeat: -1})
+    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '-225rem', ease: 'none'})
+    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '0rem', ease: 'none'})
+}
 
 document.getElementById('arrowRight').onclick = function() {
     arrowRight()
@@ -740,6 +744,40 @@ document.getElementById('runBtn').onclick = function() {
 
 // if click inside of pokedex screen
 document.getElementById('pokedex').onclick = function() {
-    document.getElementById('pokedex').style.display = 'none'
-    pokedexScreen = false
+    // if in battle
+    if (inBattle){
+        document.getElementById('pokedex').style.display = 'none'
+        gsap.to('#battleScreen', {duration: 0, delay: 0, display: 'flex'})
+        pokedexScreen = false
+    }
+    // if not in battle
+    else{
+        document.getElementById('pokedex').style.display = 'none'
+        gsap.to('#battleScreen', {duration: 0, delay: 0, display: 'none'})
+        pokedexScreen = true
+    }
+}
+
+// allows Pokedex screen to be used from the GBC start button and outside of the battle screen
+let startBtnCounter = 0
+document.getElementById('startBtn').onclick = function() {
+    // stops people hitting enter on the title screen and seeing the pokedex
+    if (titleScreen){
+    }
+    else{
+        startBtnCounter += 1
+        if (startBtnCounter % 2 != 0){
+            gsap.to('#battleScreen', {duration: 0, delay: 0, display: 'flex'})
+            showPokedex()
+        }
+        else{
+            if (inBattle){
+                document.getElementById("pokedex").style.display = 'none'
+            }
+            else{
+                gsap.to('#battleScreen', {duration: 0, delay: 0, display: 'none'})
+                document.getElementById("pokedex").style.display = 'none'
+            }
+        }
+    }
 }

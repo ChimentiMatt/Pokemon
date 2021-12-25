@@ -397,13 +397,14 @@
 #pokedex{
   position: absolute;
   z-index: 15;
-  width: 100%;
-  height: 100%;
   background: rgb(248, 248, 248);
+  background-image: linear-gradient(to top, #ffffff, #fff4ff, #ffe7e7, #ffe9a9, #ffff7f);
   color: black;
   text-align: start;
   padding-left: 7rem;
   display: none;
+  height: 20rem;
+  width: 20rem;
 }
 
 .underline{
@@ -437,7 +438,7 @@
 
 #arrowUp{
   position: relative;
-  left: -3.3rem;
+  left: 2rem;
   top: -10rem;
   border: 1px solid black;
   width: 3rem;
@@ -446,7 +447,7 @@
 }
 #arrowDown{
   position: relative;
-  left: -12.3rem;
+  left: -7.0rem;
   top: -4rem;
   border: 1px solid black;
   width: 3rem;
@@ -456,7 +457,7 @@
 
 #arrowLeft{
   position: relative;
-  left: -9rem;
+  left: -4rem;
   top: -7rem;
   border: 1px solid black;
   width: 3rem;
@@ -465,7 +466,7 @@
 }
 #arrowRight{
   position: relative;
-  left: -6.5rem;
+  left: -1.5rem;
   top: -7rem;
   border: 1px solid black;
   width: 3rem;
@@ -475,7 +476,7 @@
 
 #enterBtn{
   position: relative;
-  left: 5rem;
+  left: 10rem;
   top: -9rem;
   border: 1px solid black;
   width: 4rem;
@@ -483,6 +484,13 @@
   opacity: 0;
 }
 
+#startBtn{
+  position: relative;
+  width: 10rem;
+  right: 8rem;
+  top: 1rem;
+  opacity: 0;
+}
 
 @media (max-width: 1000px) {
 
