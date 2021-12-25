@@ -341,8 +341,14 @@ function keyDown(event) {
                     console.log(pokemonList)
                     console.log(caughtList)
                     for (let i = 0; i < pokemonList.length; i++){
+                        // make text above list
+                        if (i == 0){    
+                            newElement += `<p class="pokedexItems underline">${caughtList.length} /150 CAUGHT POKEMON</p>` 
+                        
+                            newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
+                        }
                         // if Nidoran
-                        if (i == 29 -1){
+                        else if (i == 29 -1){
                             // if caught
                             if (caughtList.includes('Nidoran m') ){
                                 newElement += `<p class="pokedexItems">${i + 1} Nidoran m <img class="caughtBall" src='images/pokeball.png'/></p>` 
@@ -376,12 +382,12 @@ function keyDown(event) {
                             }
                         }
                         else{
-                            // if caught
+                            // if caught shows image with pokeball
                             if (caughtList.includes(pokemonList[i]) ){
                                 // console.log(pokemonList[i],'i pokemon')
-                                newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]} <img class="caughtBall" src='images/pokeball.png'/></p>`
+                                newElement += `<p class="pokedexItems pokedexItemsCaught"><img class="caughtBall" src='images/pokeball.png'/>${i + 1} ${pokemonList[i]}</p>`
                             }
-                            // if not caught
+                            // if not caught no pokeball image
                             else{
                                 newElement += `<p class="pokedexItems">${i + 1} ${pokemonList[i]}</p>`
                             }
@@ -389,8 +395,9 @@ function keyDown(event) {
                     }
                     pokdedexDom.innerHTML = newElement
                     //Srroll through pokedex screen
-                    gsap.to('.pokedexItems', {delay: 1, duration: 40, y: '-225rem', ease: 'none'})
-                    gsap.to('.pokedexItems', {delay: 42, duration: 40, y: '0rem', ease: 'none'})
+                    var tl2 = gsap.timeline({ repeat: -1})
+                    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '-225rem', ease: 'none'})
+                    tl2.to('.pokedexItems', {delay: 1, duration: 40, y: '0rem', ease: 'none'})
                 }
             }
         }
