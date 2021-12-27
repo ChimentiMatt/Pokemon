@@ -49,7 +49,6 @@
   height: 60rem;
   width: 38rem;
   object-fit: fill;
-  display: none;
 }
 
 #counter2{
@@ -487,7 +486,7 @@
   height: 3rem;
   /* opacity: 0; */
   /* background: none; */
-  /* border: none; */
+  border: none;
 }
 
 #enterBtn{
