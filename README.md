@@ -6,3 +6,5 @@
 ##### Versatile controls: Use the Arrow Keys/Enter as your inputs. You can also click on the Gameboy Colors controls or even click inside of the Gameboy's screen. 
 
 ##### If pokemon are already caught, you can tell from your Pokédex or the ball icon next to the encounters name.
+
+##### Built in Vanilla Javascript. 
