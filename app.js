@@ -247,7 +247,7 @@ function keyDown(event) {
                     setTimeout(() => { battleText.innerHTML = `${currentName} attacks` }, 2200)
                     gsap.to('#charBack', { delay: 2.5, duration: .2, rotation: 5 })
                     gsap.to('#charBack', { delay: 2.7, duration: .2, rotation: 0 })
-                    setTimeout(() => { battleText.innerHTML = `It's not ever effective` }, 3400)
+                    setTimeout(() => { battleText.innerHTML = `It's not very effective` }, 3400)
                     gsap.to('#hpBarInner', { delay: 3.3, width: playerDamage + '%' })
 
                     // if charmander faints
