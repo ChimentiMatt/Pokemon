@@ -1,4 +1,4 @@
-# Pokémon! Please Don't Sue Me Edition!
+# Pokémon! Please Don't Sue Me Version!
 
 #### https:...
 #####  A fun little Gameboy Color Pokémon simulator. Use your Charmander to battle while trying to catch Pokémon. See if you can catch them all. Your progress is tracked in your Pokédex. Have fun!
