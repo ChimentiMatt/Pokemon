@@ -353,6 +353,7 @@ document.addEventListener("keydown", function (event) {
 
     if (event.key == 'ArrowRight') {
         arrowRight()
+        console.log('right working')
     }
 
     // Player Moves Left
