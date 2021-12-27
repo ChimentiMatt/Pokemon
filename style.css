@@ -447,7 +447,9 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  opacity: 0;
+  /* opacity: 0; */
+  border: none;
+  background: none;
 }
 #arrowDown{
   position: relative;
@@ -457,7 +459,9 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  opacity: 0;
+  /* opacity: 0; */
+  border: none;
+  background: none;
 }
 
 #arrowLeft{
@@ -468,7 +472,9 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  opacity: 0;
+  /* opacity: 0; */
+  border: none;
+  background: none;
 }
 #arrowRight{
   position: relative;
@@ -478,7 +484,9 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  opacity: 0;
+  /* opacity: 0; */
+  /* background: none; */
+  border: none;
 }
 
 #enterBtn{
@@ -489,7 +497,10 @@
   border: 1px solid black;
   width: 4rem;
   height: 4.5rem;
-  opacity: 0;
+  /* opacity: 0; */
+  /* visibility: hidden; */
+  border: none;
+  background: none;
 }
 
 #startBtn{
@@ -498,7 +509,9 @@
   width: 10rem;
   right: 8rem;
   top: 1rem;
-  opacity: 0;
+  /* opacity: 0; */
+  border: none;
+  background: none;
 }
 
 @media (max-width: 1000px) {
