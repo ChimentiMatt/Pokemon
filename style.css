@@ -516,6 +516,13 @@
     height: 100vh;
     transform: scale(0.5);
   }
+  #gitHub{
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    height: 2rem;
+    width: 2rem;
+  }
 }
 
 @media (max-height: 600px) {
