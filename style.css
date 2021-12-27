@@ -44,7 +44,7 @@
 
 #GBC{
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   top: -5rem;
   height: 60rem;
   width: 38rem;
@@ -447,9 +447,7 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  /* opacity: 0; */
-  border: none;
-  background: none;
+  opacity: 0;
 }
 #arrowDown{
   position: relative;
@@ -459,9 +457,7 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  /* opacity: 0; */
-  border: none;
-  background: none;
+  opacity: 0;
 }
 
 #arrowLeft{
@@ -472,9 +468,7 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  /* opacity: 0; */
-  border: none;
-  background: none;
+  opacity: 0;
 }
 #arrowRight{
   position: relative;
@@ -484,9 +478,7 @@
   border: 1px solid black;
   width: 3rem;
   height: 3rem;
-  /* opacity: 0; */
-  /* background: none; */
-  border: none;
+  opacity: 0;
 }
 
 #enterBtn{
@@ -497,10 +489,7 @@
   border: 1px solid black;
   width: 4rem;
   height: 4.5rem;
-  /* opacity: 0; */
-  /* visibility: hidden; */
-  border: none;
-  background: none;
+  opacity: 0;
 }
 
 #startBtn{
@@ -509,9 +498,7 @@
   width: 10rem;
   right: 8rem;
   top: 1rem;
-  /* opacity: 0; */
-  border: none;
-  background: none;
+  opacity: 0;
 }
 
 @media (max-width: 1000px) {
